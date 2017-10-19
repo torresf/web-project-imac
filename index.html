@@ -2,8 +2,8 @@
 <head>
 	<title>Imagram</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="./styles/reset.css">
-	<link rel="stylesheet" type="text/css" href="./styles/style.css">
+	<link rel="stylesheet" type="text/css" href="css/reset.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script
 	  src="https://code.jquery.com/jquery-3.2.1.min.js"
 	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -13,23 +13,21 @@
 <body>
 	<aside id="menu">
 		<h1>Imagram</h1>
-
+		<span>#</span><input type="text" name="search">
+		<span>User</span><input type="text" name="search">
 	</aside>
 	<aside id="photos">
-		<ul>
+		<!-- A afficher lorsqu'il n'y a pas de photos trouvées -->
+		<div id="no_result">
+			<img src="./img/default-image.png" height="200" width="200" alt="Image par défaut">
+		</div>
+
+		<!-- <ul>
 			<li></li>
 			<li></li>
 			<li></li>
 			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul>
+		</ul> -->
 	</aside>
 </body>
 </html>
