@@ -10,14 +10,21 @@ aside#menu {
 		font-weight: bold;
 		color: black;
 	}
+	div{
+		margin: 10px;
+	}
 	input[type=text]{
 		border: 2px solid #ddd;
 		padding: 10px 15px;
-		box-shadow: 0 2px 6px rgba(0,0,0,.2);
+		// box-shadow: 0 2px 6px rgba(0,0,0,.2);
 		font-size: 1.2em;
+		margin-left: 5px;
 		&:active, &:focus{
 			outline: none;
 		}
+	}
+	#search_form{
+
 	}
 }
 
@@ -33,20 +40,20 @@ aside#photos {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		img {
-
-			border: 1px solid #ddd;
-		}
 	}
 	ul{
 		li{
 			display: inline-block;
 			float: left;
-			border: 1px solid #ddd;
-			width: 200px;
-			height: 200px;
-			background-image: url('../img/default-image.png');
+			width: 300px;
+			height: 300px;
+			// margin: 10px;
 			background-size: cover;
+			overflow: hidden;
+			img{
+				height: 100%;
+				// width: 100%;
+			}
 		}
 	}
 }

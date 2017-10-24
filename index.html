@@ -13,21 +13,27 @@
 <body>
 	<aside id="menu">
 		<h1>Imagram</h1>
-		<span>#</span><input type="text" name="search">
-		<span>User</span><input type="text" name="search">
+		<form id="search_form">
+			<div>
+				<span>#</span>
+				<input type="text" name="hashtag">
+			</div>
+			<div>
+				<span>User</span>
+				<input type="text" name="username" id="username">
+			</div>
+			<div>
+				<input type="submit" id="submit" value="Valider">
+			</div>
+		</form>
 	</aside>
 	<aside id="photos">
 		<!-- A afficher lorsqu'il n'y a pas de photos trouvées -->
 		<div id="no_result">
-			<img src="./img/default-image.png" height="200" width="200" alt="Image par défaut">
+			<img src="./img/default-image.png" height="400" width="400" alt="Image par défaut">
 		</div>
 
-		<!-- <ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
-		</ul> -->
+		<ul></ul>
 	</aside>
 </body>
 </html>
