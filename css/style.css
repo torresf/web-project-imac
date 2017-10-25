@@ -42,7 +42,10 @@ aside#photos {
     width: 33.33%;
     height: auto;
     overflow: hidden; }
+    aside#photos ul li:hover .external_link {
+      opacity: 1; }
     aside#photos ul li .overlay {
+      z-index: 9;
       height: 100%;
       width: 100%;
       position: absolute;
@@ -52,6 +55,7 @@ aside#photos {
     aside#photos ul li img {
       height: 100%; }
     aside#photos ul li .likes {
+      z-index: 10;
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -59,3 +63,31 @@ aside#photos {
       font-weight: 600; }
       aside#photos ul li .likes i {
         color: red; }
+    aside#photos ul li .location {
+      z-index: 10;
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      color: white;
+      font-weight: 600; }
+      aside#photos ul li .location p {
+        font-size: 12px;
+        text-align: right;
+        text-overflow: ellipsis;
+        width: 120px;
+        white-space: nowrap;
+        overflow: hidden; }
+      aside#photos ul li .location i {
+        color: white; }
+    aside#photos ul li .external_link {
+      opacity: 0;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: white;
+      font-size: 1.4em;
+      z-index: 10;
+      transition: .2s; }
+      aside#photos ul li .external_link i {
+        color: white;
+        text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); }
