@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+body{
+	font-family: 'Open Sans';
+}
 aside#menu {
 	float: left;
+	position: fixed;
 	background-color: white;
 	padding: 10px;
 	box-sizing: border-box;
@@ -44,15 +50,32 @@ aside#photos {
 	ul{
 		li{
 			display: inline-block;
+			position: relative;
 			float: left;
-			width: 300px;
-			height: 300px;
-			// margin: 10px;
-			background-size: cover;
+			width: 33.33%;
+			height: auto;
 			overflow: hidden;
+			.overlay{
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+				background: linear-gradient(0deg, rgba(0,0,0,.5) 0%, transparent 15%);
+			}
 			img{
 				height: 100%;
-				// width: 100%;
+			}
+			.likes{
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				color: white;
+				font-weight: 600;
+
+				i{
+					color: red;
+				}
 			}
 		}
 	}
