@@ -1,6 +1,9 @@
 $(document).ready(function(){
 
-	$("#search_form").submit(function(e){
+	$("#hashtag_form").submit(function(e){
+		e.preventDefault();
+	});
+	$("#username_form").submit(function(e){
 		e.preventDefault();
 		var name = $('#username').val();
 		var hashtag = $('#hashtag').val();
@@ -57,6 +60,19 @@ $(document).ready(function(){
 
 	$(window).resize(function(){
 		$("#photos ul li").height($("#photos ul li").width());
+	});
+
+	$('#hashtag').focus(function(){
+		$('i.fa-hashtag').css('opacity', 1);
+	});
+	$('#hashtag').focusout(function(){
+		$('i.fa-hashtag').css('opacity', .5);
+	});
+	$('#username').focus(function(){
+		$('i.fa-user-circle-o').css('opacity', 1);
+	});
+	$('#username').focusout(function(){
+		$('i.fa-user-circle-o').css('opacity', .5);
 	});
 
 });

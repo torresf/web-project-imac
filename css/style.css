@@ -8,28 +8,74 @@ body {
 aside#menu {
   float: left;
   position: fixed;
-  background-color: white;
+  background-color: #0f131d;
   padding: 10px;
   box-sizing: border-box;
+  color: white;
   height: 100%;
-  width: 33.3%; }
+  width: 25%;
+  text-align: center; }
   aside#menu h1 {
-    font-size: 3em;
+    font-size: 2.3em;
+    text-align: center;
     font-weight: bold;
-    color: black; }
+    margin-bottom: 50px;
+    position: relative; }
+    aside#menu h1:after {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 2px;
+      width: 20px;
+      background-color: white; }
   aside#menu div {
     margin: 10px; }
-  aside#menu input[type=text] {
-    border: 2px solid #ddd;
-    padding: 10px 15px;
-    font-size: 1.2em;
-    margin-left: 5px; }
-    aside#menu input[type=text]:active, aside#menu input[type=text]:focus {
+  aside#menu form input[type=text] {
+    border: 0;
+    border-radius: 4px 0 0 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 12px 10px;
+    background-color: white;
+    color: #0f131d;
+    margin-left: 5px;
+    width: 50%;
+    font-size: 1.2em; }
+    aside#menu form input[type=text]:active, aside#menu form input[type=text]:focus {
       outline: none; }
+  aside#menu form button[type=submit] {
+    display: inline-block;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    background-color: #9b1d1d;
+    color: white;
+    position: relative;
+    left: -4px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: .05s;
+    width: 46px;
+    height: 46px; }
+    aside#menu form button[type=submit]:active, aside#menu form button[type=submit]:focus {
+      outline: none; }
+    aside#menu form button[type=submit]:active {
+      box-shadow: 0 0px 0px rgba(0, 0, 0, 0.2);
+      opacity: .7; }
+    aside#menu form button[type=submit] i {
+      font-size: 1em;
+      opacity: 1; }
+  aside#menu form i {
+    opacity: .5;
+    font-size: 1.5em; }
+  aside#menu form ::-webkit-input-placeholder {
+    /* WebKit, Blink, Edge */
+    color: #7487b7;
+    font-size: .9em; }
 
 aside#photos {
   background-color: #E9EEF1;
-  width: 66.6%;
+  width: 75%;
   height: 100%;
   float: right;
   position: relative; }
@@ -60,7 +106,7 @@ aside#photos {
         transform: translate(-50%, -50%) scale(1);
         font-size: 3em;
         color: rgba(0, 0, 0, 0.5); }
-    aside#photos ul li:hover .external_link {
+    aside#photos ul li:hover .external_link, aside#photos ul li:hover .overlay, aside#photos ul li:hover .location, aside#photos ul li:hover .likes {
       opacity: 1; }
     aside#photos ul li .overlay {
       z-index: 9;
@@ -69,28 +115,34 @@ aside#photos {
       position: absolute;
       top: 0;
       left: 0;
-      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, transparent 15%); }
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, transparent 15%);
+      opacity: 0;
+      transition: .2s; }
     aside#photos ul li img {
       height: 100%; }
     aside#photos ul li .likes {
       z-index: 10;
-      font-size: .8em;
+      font-size: 1.2em;
       position: absolute;
       bottom: 10px;
       left: 10px;
       color: white;
-      font-weight: 600; }
+      font-weight: 600;
+      opacity: 0;
+      transition: .2s; }
       aside#photos ul li .likes i {
-        color: red; }
+        color: #9b1d1d; }
     aside#photos ul li .location {
       z-index: 10;
       position: absolute;
       bottom: 10px;
       right: 10px;
       color: white;
-      font-weight: 600; }
+      font-weight: 600;
+      opacity: 0;
+      transition: .2s; }
       aside#photos ul li .location p {
-        font-size: .8em;
+        font-size: 1em;
         text-align: right;
         text-overflow: ellipsis;
         width: 120px;
