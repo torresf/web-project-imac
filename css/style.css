@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+::-webkit-scrollbar {
+  display: none; }
+
 body {
   font-family: 'Open Sans'; }
 
@@ -41,7 +44,22 @@ aside#photos {
     float: left;
     width: 33.33%;
     height: auto;
-    overflow: hidden; }
+    overflow: hidden;
+    animation: fadein .3s; }
+    aside#photos ul li#voir_plus {
+      cursor: pointer;
+      position: relative;
+      text-align: center;
+      background: linear-gradient(-45deg, #e53737, #e29638); }
+      aside#photos ul li#voir_plus:hover {
+        background: linear-gradient(-45deg, #e85c5c, #e8a451); }
+      aside#photos ul li#voir_plus i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1);
+        font-size: 3em;
+        color: rgba(0, 0, 0, 0.5); }
     aside#photos ul li:hover .external_link {
       opacity: 1; }
     aside#photos ul li .overlay {
@@ -56,6 +74,7 @@ aside#photos {
       height: 100%; }
     aside#photos ul li .likes {
       z-index: 10;
+      font-size: .8em;
       position: absolute;
       bottom: 10px;
       left: 10px;
@@ -71,7 +90,7 @@ aside#photos {
       color: white;
       font-weight: 600; }
       aside#photos ul li .location p {
-        font-size: 12px;
+        font-size: .8em;
         text-align: right;
         text-overflow: ellipsis;
         width: 120px;
@@ -91,3 +110,12 @@ aside#photos {
       aside#photos ul li .external_link i {
         color: white;
         text-shadow: 0 3px 8px rgba(0, 0, 0, 0.3); }
+
+/* animation */
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: scale(0); }
+  100% {
+    opacity: 1;
+    transform: scale(1); } }

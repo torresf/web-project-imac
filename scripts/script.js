@@ -3,36 +3,44 @@ $(document).ready(function(){
 	$("#search_form").submit(function(e){
 		e.preventDefault();
 		var name = $('#username').val();
-		console.log(name);
+		var hashtag = $('#hashtag').val();
 		if (name){
 			$.ajax({
-				url: "https://www.instagram.com/"+name+"/media/",
+				url: "https://www.instagram.com/"+name+"/media/", //Pour les hashtags : https://www.instagram.com/explore/tags/[hashtag]/?__a=1
 				dataType: "json",
 				success: function(data){
 					if (data.items.length > 0){
 						$("#photos ul").html("");
 						$('#no_result').hide();
 						var compteur = 0;
+						var time = 50;
 						data.items.forEach(function(image){
-							console.log(image);
-							var img = image.images.standard_resolution;
-							var src = img.url;
-							var width = img.width;
-							var height = img.height;
-							var location ="";
-							if (image.location) {
-								location = "<div class='location' title='"+image.location.name+"'><p><i class='fa fa-map-marker' aria-hidden='true'></i> "+image.location.name+"</p></div>"
-							}
-							$("#photos ul").append("<li><div class='external_link'><a href='"+image.link+"' target='_blank'><i class='fa fa-external-link-square' aria-hidden='true'></i></a></div><div class='overlay'></div><div class='likes'>"+formatNb(image.likes.count)+" <i class='fa fa-heart' aria-hidden='true'></i></div>"+location+"<img id='img"+compteur+"' src='"+src+"'></li>");
-							$('#img'+compteur).parent().height($('#img'+compteur).parent().width());
-							if (width<height){
-								$('#img'+compteur).css({
-									height: "auto",
-									width: "100%"
-								});
-							}
-							compteur++;
+							setTimeout( function(){
+								console.log(image);
+								var img = image.images.standard_resolution;
+								var src = img.url;
+								var width = img.width;
+								var height = img.height;
+								var location ="";
+								if (image.location) {
+									location = "<div class='location' title='"+image.location.name+"'><p><i class='fa fa-map-marker' aria-hidden='true'></i> "+image.location.name+"</p></div>"
+								}
+								$("#photos ul").append("<li><div class='external_link'><a href='"+image.link+"' target='_blank'><i class='fa fa-external-link-square' aria-hidden='true'></i></a></div><div class='overlay'></div><div class='likes'>"+formatNb(image.likes.count)+" <i class='fa fa-heart' aria-hidden='true'></i></div>"+location+"<img id='img"+compteur+"' src='"+src+"'></li>");
+								$('#img'+compteur).parent().height($('#img'+compteur).parent().width());
+								if (width<height){
+									$('#img'+compteur).css({
+										height: "auto",
+										width: "100%"
+									});
+								}
+								compteur++;
+							}, time);
+							time+=50;
 						});
+						setTimeout(function(){
+							$("#photos ul").append("<li id='voir_plus'><i class='fa fa-plus' aria-hidden='true'></i></li>");
+							$('#voir_plus').height($('#voir_plus').width());
+						}, time);
 					} else {
 						$("#photos ul").html("");
 						$('#no_result').show();
