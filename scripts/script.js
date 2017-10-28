@@ -1,12 +1,58 @@
 $(document).ready(function(){
 
+	$('#profile').hide();
 	$("#hashtag_form").submit(function(e){
 		e.preventDefault();
+		var hashtag = $('#hashtag').val();
+		if (hashtag){
+			$.ajax({
+				url: "https://www.instagram.com/explore/tags/"+hashtag+"/?__a=1",
+				dataType: "json",
+				success: function(data){
+					images = data.tag.top_posts.nodes;
+					if (images.length > 0){
+						$("#photos ul").html("");
+						$('#profile').hide();
+						$('#no_result').hide();
+						var compteur = 0;
+						var time = 50;
+						images.forEach(function(image){
+							setTimeout( function(){
+								console.log(image);
+								var img = image;
+								var src = img.display_src;
+								var width = img.dimensions.width;
+								var height = img.dimensions.height;
+								$("#photos ul").append("<li><div class='overlay'></div><div class='likes'>"+formatNb(image.likes.count)+" <i class='fa fa-heart' aria-hidden='true'></i></div><img id='img"+compteur+"' src='"+src+"'></li>");
+								$('#img'+compteur).parent().height($('#img'+compteur).parent().width());
+								if (width<height){
+									$('#img'+compteur).css({
+										height: "auto",
+										width: "100%"
+									});
+								}
+								compteur++;
+							}, time);
+							time+=50;
+						});
+					} else {
+						$("#photos ul").html("");
+						$('#no_result').show();
+						$('#profile').hide();
+					}
+				},
+				error: function(){
+					console.log("Ce nom d'utilisateur n'existe pas");
+					$("#photos ul").html("");	
+					$('#no_result').show();
+					$('#profile').hide();
+				}
+			})
+		}
 	});
 	$("#username_form").submit(function(e){
 		e.preventDefault();
 		var name = $('#username').val();
-		var hashtag = $('#hashtag').val();
 		if (name){
 			$.ajax({
 				url: "https://www.instagram.com/"+name+"/media/", //Pour les hashtags : https://www.instagram.com/explore/tags/[hashtag]/?__a=1
@@ -15,8 +61,14 @@ $(document).ready(function(){
 					if (data.items.length > 0){
 						$("#photos ul").html("");
 						$('#no_result').hide();
+						$('#profile').hide();
 						var compteur = 0;
 						var time = 50;
+						var user = data.items[0].user;
+						$('#profile_fullname').html(user.full_name);
+						$('#profile_username').html("<a href='https://instagram.com/"+user.username+"' target='_blank'>@"+user.username+"</a>");
+						$('#profile_picture').attr("src", user.profile_picture);
+						$('#profile').show();
 						data.items.forEach(function(image){
 							setTimeout( function(){
 								console.log(image);
@@ -47,12 +99,14 @@ $(document).ready(function(){
 					} else {
 						$("#photos ul").html("");
 						$('#no_result').show();
+						$('#profile').hide();
 					}
 				},
 				error: function(){
 					console.log("Ce nom d'utilisateur n'existe pas");
 					$("#photos ul").html("");	
 					$('#no_result').show();
+					$('#profile').hide();
 				}
 			})
 		}
@@ -66,13 +120,13 @@ $(document).ready(function(){
 		$('i.fa-hashtag').css('opacity', 1);
 	});
 	$('#hashtag').focusout(function(){
-		$('i.fa-hashtag').css('opacity', .5);
+		$('i.fa-hashtag').css('opacity', .4);
 	});
 	$('#username').focus(function(){
 		$('i.fa-user-circle-o').css('opacity', 1);
 	});
 	$('#username').focusout(function(){
-		$('i.fa-user-circle-o').css('opacity', .5);
+		$('i.fa-user-circle-o').css('opacity', .4);
 	});
 
 });

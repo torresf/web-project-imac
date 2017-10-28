@@ -7,7 +7,6 @@ Tri par likes / commentaires? / date d'ajout
 
 Problème : Seulement les 20 premières photos (pagination/infinite scroll ?)
 
-
 En dessous du tri : 
 Profil (photo, nb followers)
 

@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,900");
 ::-webkit-scrollbar {
   display: none; }
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  color: #0f131d; }
 
 body {
   font-family: 'Open Sans'; }
@@ -16,10 +21,22 @@ aside#menu {
   width: 25%;
   text-align: center; }
   aside#menu h1 {
-    font-size: 2.3em;
+    font-size: 2em;
+    font-family: Montserrat;
+    opacity: 1;
+    letter-spacing: 5px;
+    text-transform: uppercase;
     text-align: center;
     font-weight: bold;
     margin-bottom: 50px;
+    margin-top: 40px;
+    background: linear-gradient(45deg, rgba(155, 29, 29, 0), rgba(155, 29, 29, 0.4) 20%, rgba(155, 29, 29, 0.7) 50%, rgba(155, 29, 29, 0.4) 80%, rgba(155, 29, 29, 0));
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+    text-shadow: 0 0 50px rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 40px 50px;
+    border-radius: 6px;
+    display: inline-block;
     position: relative; }
     aside#menu h1:after {
       position: absolute;
@@ -34,13 +51,13 @@ aside#menu {
   aside#menu form input[type=text] {
     border: 0;
     border-radius: 4px 0 0 4px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     padding: 12px 10px;
     background-color: white;
     color: #0f131d;
     margin-left: 5px;
     width: 50%;
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    font-weight: bold; }
     aside#menu form input[type=text]:active, aside#menu form input[type=text]:focus {
       outline: none; }
   aside#menu form button[type=submit] {
@@ -66,12 +83,30 @@ aside#menu {
       font-size: 1em;
       opacity: 1; }
   aside#menu form i {
-    opacity: .5;
+    opacity: .4;
     font-size: 1.5em; }
   aside#menu form ::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
-    color: #7487b7;
-    font-size: .9em; }
+    color: rgba(15, 19, 29, 0.6);
+    font-weight: bold; }
+  aside#menu #profile {
+    margin-top: 60px;
+    animation: fadein .3s; }
+    aside#menu #profile #profile_fullname {
+      font-size: 1.3em;
+      font-weight: bold;
+      margin-bottom: 5px; }
+    aside#menu #profile #profile_username {
+      font-size: .8em;
+      margin-bottom: 20px; }
+      aside#menu #profile #profile_username a {
+        color: white;
+        text-decoration: none; }
+    aside#menu #profile #profile_picture {
+      height: 150px;
+      width: 150px;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.6); }
 
 aside#photos {
   background-color: #E9EEF1;

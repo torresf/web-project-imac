@@ -1,11 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
-
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,900');
 
 $dark_blue: #0f131d;
 $red: #9b1d1d;
 
 ::-webkit-scrollbar { 
     display: none; 
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    color: $dark_blue;
 }
 
 body{
@@ -22,10 +27,22 @@ aside#menu {
 	width: 25%;
 	text-align: center;
 	h1{
-		font-size: 2.3em;
+		font-size: 2em;
+		font-family: Montserrat;
+		opacity: 1;
+		letter-spacing: 5px;
+		text-transform: uppercase;
 		text-align: center;
 		font-weight: bold;
 		margin-bottom: 50px;
+		margin-top: 40px;
+		background: linear-gradient(45deg, rgba($red, .0), rgba($red, .4) 20%, rgba($red, .7) 50%, rgba($red, .4) 80%, rgba($red, .0));
+		box-shadow: 0 4px 6px rgba(0,0,0,.4);
+		text-shadow: 0 0 50px rgba(0,0,0,.6);
+		color: rgba(white, 1);
+		padding: 40px 50px;
+		border-radius: 6px;
+		display: inline-block;
 		position: relative;
 
 		&:after{
@@ -45,13 +62,13 @@ aside#menu {
 		input[type=text]{
 			border: 0;
 			border-radius: 4px 0 0 4px;
-			box-shadow: 0 2px 8px rgba(0,0,0,.2);
 			padding: 12px 10px;
 			background-color: white;
 			color: $dark_blue;
 			margin-left: 5px;
 			width: 50%;
 			font-size: 1.2em;
+			font-weight: bold;
 			&:active, &:focus{
 				outline: none;
 			}
@@ -83,12 +100,36 @@ aside#menu {
 			}
 		}
 		i{
-			opacity: .5;
+			opacity: .4;
 			font-size: 1.5em;
 		}
 		::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-		    color: lighten($dark_blue, 50%);
-		    font-size: .9em;
+		    color: rgba($dark_blue, .6);
+		    font-weight: bold;
+		    // font-size: .9em;
+		}
+	}
+	#profile{
+		margin-top: 60px;
+		animation: fadein .3s;
+		#profile_fullname{
+			font-size: 1.3em;
+			font-weight: bold;
+			margin-bottom: 5px;
+		}
+		#profile_username{
+			font-size: .8em;
+			margin-bottom: 20px;
+			a{
+				color: white;
+				text-decoration: none;
+			}
+		}
+		#profile_picture{
+			height: 150px;
+			width: 150px;
+			border-radius: 50%;
+			box-shadow: 0 2px 4px rgba(0,0,0,.6);
 		}
 	}
 }
