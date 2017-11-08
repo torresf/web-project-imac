@@ -1,17 +1,14 @@
 # web-project-imac
 Projet Web Imac1, par Florian Torres et Tom Samaille
 
-Idées : 
-Choisir le nombre d'images par page. (select)
-Tri par likes / commentaires? / date d'ajout
+API : https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/#www_synthesize12
+DEMO : https://text-to-speech-demo.mybluemix.net/?cm_mc_uid=54005450539515101471894&cm_mc_sid_50200000=1510147189&cm_mc_sid_52640000=1510147189
 
-Problème : Seulement les 20 premières photos (pagination/infinite scroll ?)
+Textarea dans lequel l'utilisateur peut écrire son texte.
+Ensuite, pour les langages abilités, il pourra ajouter un temps mort plus ou moins long au niveau du curseur.
+Si le langage n'est pas transformable, les options sont grisées.
 
-En dessous du tri : 
-Profil (photo, nb followers)
-
-Autre idée :
-Comparateur de profils insta 
-Nb photos, nb likes total, nb followers, hashtag le plus utilisé ? ...
-
-Recherche par hashtag avec le endpoint : https://www.instagram.com/explore/tags/[hashtag]/?__a=1
+Idées :
+Possibilités de télécharger le texte à la fin (mp3?)
+Glisser - déposer le temps de pause.
+Sélectionner une zone de texte pour l'accélérer ou la ralentir (couleur de fond change en fonction de la vitesse : rouge rapide, bleu lent)
