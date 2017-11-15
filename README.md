@@ -8,6 +8,8 @@ Textarea dans lequel l'utilisateur peut écrire son texte.
 Ensuite, pour les langages abilités, il pourra ajouter un temps mort plus ou moins long au niveau du curseur.
 Si le langage n'est pas transformable, les options sont grisées.
 
+Image recognition
+
 Idées :
 Possibilités de télécharger le texte à la fin (mp3?)
 Glisser - déposer le temps de pause.
