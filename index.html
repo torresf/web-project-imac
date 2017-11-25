@@ -1,14 +1,40 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<title>Imagram</title>
-	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="css/reset.css">
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script> <!-- Jquery -->
-	<script type="text/javascript" src="scripts/script.js"></script>
-</head>
-<body>
-	
-</body>
+  <head>
+    <title>YouTube Data API Quickstart</title>
+    <meta charset='utf-8' />
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+  </head>
+  <body>
+
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize-button" style="display: none;">Authorize</button>
+    <button id="signout-button" style="display: none;">Sign Out <i class="fa fa-sign-out" aria-hidden="true"></i></button>
+
+    <aside id="left_aside">
+      <section id="account">
+        <img id="channel_thumbnail" src="" alt="Photo de profil" />
+        <h2 id="channel_title"></h2>
+      </section>
+      <div id="playlists">
+        <h2>Playlists</h2>
+        <div id="loader">
+          <i class="fa fa-spinner" aria-hidden="true"></i>
+        </div>
+        <ul id="playlists_list">
+        </ul>
+      </div>
+      
+      <button id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i> Afficher les playlists</button>
+    </aside>
+    
+    <script type="text/javascript" src="script/script.js"></script>
+    <script type="text/javascript" src="script/myscript.js"></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
 </html>

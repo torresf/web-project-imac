@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,900');
+
+#left_aside{
+	font-family: "Open Sans";
+	width: 33.33%;
+	position: relative;
+	height: 100%;
+	#account{
+		padding: 10px;
+		text-align: center;
+		#channel_thumbnail{
+			border-radius: 50%;
+		}
+		#channel_title{
+			font_weight: bold;
+			font-size: .8em;
+		}
+	}
+	#loader{
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		i{
+			color: #bbb;
+			animation: spin 4s linear infinite;
+			font-size: 3em;
+		}
+	}
+	#playlists{
+		
+		background-color: #eee;
+		padding: 10px;
+		h2{
+			color: black;
+			font-size: 1.3em;
+			font-weight: 900;
+			margin: 10px;
+		}
+		ul{
+			list-style: none;
+			li{
+				padding: 10px;
+				margin: 5px 10px;
+				background-color: #fff;
+				font-size: .9em;
+				font-weight: bold;
+			}
+		}
+	}
+	#add_playlist{
+		padding: 10px 15px;
+		background-color: white;
+		border: 1px solid  lighten(#f34141, 25%);
+		color: #f34141;
+		font-weight: bold;
+		border-radius: 3px;
+		box-shadow: 0 2px 4px rgba(0,0,0,.2);
+		cursor: pointer;
+		transition: .5s;
+		&:hover{
+			box-shadow: 0 3px 8px rgba(0,0,0,.2);
+		}
+	}
+}
+
+#loader{
+	display: none;
+}
+
+
+@keyframes spin { 
+	100% { 
+		-webkit-transform: rotate(360deg); 
+		transform: rotate(360deg); 
+	} 
+}
