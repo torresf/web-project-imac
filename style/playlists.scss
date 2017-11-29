@@ -1,14 +1,12 @@
-
-
 #left_aside{
 	background-color: #eee;
-	font-family: "Open Sans";
 	width: 30%;
 	height: 500px;
 	position: relative;
 	float: left;
+	padding: 10px;
 	#account{
-		padding: 10px;
+		padding: 20px 10px 10px 10px;
 		text-align: center;
 		#channel_thumbnail{
 			border-radius: 50%;
@@ -32,29 +30,23 @@
 	}
 	#playlists{
 		padding: 10px;
-		h2{
-			color: black;
-			font-size: 1.3em;
-			font-weight: 900;
-			margin: 10px;
-		}
 		ul{
 			list-style: none;
 			li{
 				position: relative;
 				height: 60px;
 				padding: 10px;
-				margin: 5px 10px;
-				background-color: #fff;
+				margin: 10px 0;
+				background-color: #ddd;
 				font-size: 1em;
 				font-weight: bold;
 				cursor: pointer;
 				&.selected{
-					background-color: #ccc;
+					background-color: #fff;
+					color: #f34141;
 				}
 				img{
 					float: left;
-					// position: absolute;
 					top: 0;
 					left: 0;
 					height: 100%;
@@ -62,6 +54,12 @@
 				div{
 					float: left;
 					margin-left: 10px;
+					span.numberOfVideos{
+						display: block;
+						font-size: .8em;
+						margin-top: 5px;
+						font-weight: normal;
+					}
 				}
 			}
 		}
@@ -79,7 +77,13 @@
 }
 
 section#main_content{
-	float:left;
+	float: left;
+	padding: 10px;
+	ul#selectedPlaylistVideos{
+		li{
+			margin: 5px 0;
+		}
+	}
 }
 
 @keyframes spin { 

@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Youtube</title>
-    <meta charset='utf-8' />
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-  </head>
-  <body>
+    <head>
+        <title>Youtube</title>
+        <meta charset='utf-8' />
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <!--Add buttons to initiate auth sequence and sign out-->
+        <button id="authorize-button" style="display: none;">Authorize</button>
+        <button id="signout-button" style="display: none;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
 
-    <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize-button" style="display: none;">Authorize</button>
-    <button id="signout-button" style="display: none;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+        <aside id="left_aside">
+            <form id="searchByUsername">
+                <input type="text" name="username" id="username">
+                <input type="submit" name="">
+            </form>
+            <section id="account">
+                <img id="channel_thumbnail" src="" alt="Photo de profil" />
+                <h2 id="channel_title"></h2>
+            </section>
+            <div id="playlists">
+                <h2>Playlists</h2>
+                <div id="loader">
+                    <i class="fa fa-spinner" aria-hidden="true"></i>
+                </div>
+                <ul id="playlists_list">
+                </ul>
+            </div>
+            <button id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une playlist</button>
+        </aside>
 
-    <aside id="left_aside">
-      <form id="searchByUsername">
-        <input type="text" name="username" id="username">
-        <input type="submit" name="">
-      </form>
-      <section id="account">
-        <img id="channel_thumbnail" src="" alt="Photo de profil" />
-        <h2 id="channel_title"></h2>
-      </section>
-      <div id="playlists">
-        <h2>Playlists</h2>
-        <div id="loader">
-          <i class="fa fa-spinner" aria-hidden="true"></i>
-        </div>
-        <ul id="playlists_list">
-        </ul>
-      </div>
-
-      <button id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i> Ajouter une playlist</button>
-    </aside>
-
-    <section id="main_content">
-      <h2>Playlist sélectionnée : <span id="selectedPlaylistTitle"></span></h2>
-      <ul id="selectedPlaylistVideos">
-      </ul>
-    </section>
-    
-    <script type="text/javascript" src="script/script.js"></script>
-    <script type="text/javascript" src="script/myscript.js"></script>
-    <script async defer src="https://apis.google.com/js/api.js"
-      onload="this.onload=function(){};handleClientLoad()"
-      onreadystatechange="if (this.readyState === 'complete') this.onload()">
-    </script>
-  </body>
+        
+        <section id="main_content">
+            <h2>Playlist sélectionnée : <span id="selectedPlaylistTitle"></span></h2>
+            <ul id="selectedPlaylistVideos">
+            </ul>
+        </section>
+        
+        <script type="text/javascript" src="script/script.js"></script>
+        <script type="text/javascript" src="script/myscript.js"></script>
+        <script async defer src="https://apis.google.com/js/api.js"
+        onload="this.onload=function(){};handleClientLoad()"
+        onreadystatechange="if (this.readyState === 'complete') this.onload()">
+        </script>
+    </body>
 </html>

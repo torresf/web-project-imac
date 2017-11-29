@@ -131,10 +131,17 @@ function getPlaylists(id) {
       var li = document.createElement('li');
       var span = document.createElement('span');
       var div = document.createElement('div');
+      var numberOfVideos = document.createElement('span');
       li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
-      span.innerHTML = playlist.snippet.title + ' ('+ playlist.contentDetails.itemCount + ')';
-      // div.style.position = "relative";
+      span.innerHTML = playlist.snippet.title;
+      if (playlist.contentDetails.itemCount > 1) {
+        numberOfVideos.innerHTML = playlist.contentDetails.itemCount + " vidéos";
+      } else {
+        numberOfVideos.innerHTML = playlist.contentDetails.itemCount + " vidéo";
+      }
+      numberOfVideos.classList.add("numberOfVideos");
       div.appendChild(span);
+      div.appendChild(numberOfVideos);
       li.appendChild(div);
       li.setAttribute('onclick', "selectPlaylist(this, '" + String(playlist.id) + "');");
       list.appendChild(li);
