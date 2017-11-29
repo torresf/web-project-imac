@@ -1,9 +1,20 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,900");
+body {
+  font-family: "Open Sans"; }
+
+h2 {
+  color: black;
+  font-size: 1.3em;
+  font-weight: 900;
+  margin: 10px; }
+
 #left_aside {
+  background-color: #eee;
   font-family: "Open Sans";
-  width: 33.33%;
+  width: 30%;
+  height: 500px;
   position: relative;
-  height: 100%; }
+  float: left; }
   #left_aside #account {
     padding: 10px;
     text-align: center; }
@@ -13,6 +24,7 @@
       font_weight: bold;
       font-size: .8em; }
   #left_aside #loader {
+    display: none;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,7 +34,6 @@
       animation: spin 4s linear infinite;
       font-size: 3em; }
   #left_aside #playlists {
-    background-color: #eee;
     padding: 10px; }
     #left_aside #playlists h2 {
       color: black;
@@ -32,28 +43,51 @@
     #left_aside #playlists ul {
       list-style: none; }
       #left_aside #playlists ul li {
+        position: relative;
+        height: 60px;
         padding: 10px;
         margin: 5px 10px;
         background-color: #fff;
-        font-size: .9em;
-        font-weight: bold; }
-  #left_aside #add_playlist {
+        font-size: 1em;
+        font-weight: bold;
+        cursor: pointer; }
+        #left_aside #playlists ul li.selected {
+          background-color: #ccc; }
+        #left_aside #playlists ul li img {
+          float: left;
+          top: 0;
+          left: 0;
+          height: 100%; }
+        #left_aside #playlists ul li div {
+          float: left;
+          margin-left: 10px; }
+  #left_aside button {
     padding: 10px 15px;
     background-color: white;
     border: 1px solid #fbb9b9;
     color: #f34141;
     font-weight: bold;
     border-radius: 3px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: .5s; }
-    #left_aside #add_playlist:hover {
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); }
 
-#loader {
-  display: none; }
+section#main_content {
+  float: left; }
 
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
+#signout-button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #f34141;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; }

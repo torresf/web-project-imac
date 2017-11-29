@@ -83,43 +83,109 @@ function appendPre(message) {
 /**
  * Print files.
  */
-function getChannel() {
-  gapi.client.youtube.channels.list({
-    'part': 'snippet,contentDetails,statistics',
-    // 'forUsername': 'monsieurdream',
-    'mine': true
-  }).then(function(response) {
+function getChannel(username) {
+  var params = {
+      'part': 'snippet,contentDetails,statistics',
+      'mine': true
+    }
+  if (username) {
+    params = {
+      'part': 'snippet,contentDetails,statistics',
+      'forUsername': username,
+    }
+  }
+  
+  gapi.client.youtube.channels.list(params).then(function(response) {
     console.log(response);
     var channel = response.result.items[0];
-    var channel_title = document.getElementById('channel_title');
-    channel_title.innerHTML = channel.snippet.title;
-    var channel_thumbnail = document.getElementById('channel_thumbnail');
-    channel_thumbnail.src = channel.snippet.thumbnails.default.url;
+    if (channel) {
+      var channel_title = document.getElementById('channel_title');
+      channel_title.innerHTML = channel.snippet.title;
+      var channel_thumbnail = document.getElementById('channel_thumbnail');
+      channel_thumbnail.src = channel.snippet.thumbnails.default.url;
+      getPlaylists(channel.id);
+    } else {
+      console.log("Aucun utilisateur avec ce pseudo");
+    }
   });
 }
 
 /**
  * Print files.
  */
-function getPlaylists() {
+function getPlaylists(id) {
   var loader = document.getElementById('loader');
   loader.style.display = 'block';
   var list = document.getElementById('playlists_list');
   list.innerHTML = "";
+
   gapi.client.youtube.playlists.list({
     'maxResults': '25',
     'part': 'snippet,contentDetails',
-    'mine': true
+    "channelId": id
   }).then(function(response) {
     loader.style.display = 'none';
     var playlists = response.result.items;
     playlists.forEach(function(playlist, index){
-      console.log(playlist);
       index++;
       var li = document.createElement('li');
-      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ' + playlist.snippet.title + ' ('+ playlist.contentDetails.itemCount + ')';
+      var span = document.createElement('span');
+      var div = document.createElement('div');
+      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
+      span.innerHTML = playlist.snippet.title + ' ('+ playlist.contentDetails.itemCount + ')';
+      // div.style.position = "relative";
+      div.append(span)
+      li.append(div);
+      li.setAttribute('onclick', "selectPlaylist(this, '" + String(playlist.id) + "');");
       list.appendChild(li);
-    })
+    });
+    
+  });
+}
+
+/**
+ * Select Playlist
+ */
+function selectPlaylist(clicked_li, playlist_id) { //element correspond au li sur lequel l'utilisateur a cliqué
+  
+  //Changement de class pour le li selectionné
+  allLi = document.querySelectorAll("#playlists_list li");
+  allLi.forEach(function(li){
+    li.classList.remove('selected');
+  })
+  clicked_li.classList.add('selected');
+
+
+  //Appel API pour récuperer la playlist selectionnée;
+  gapi.client.youtube.playlists.list({
+    'maxResults': '25',
+    'part': 'snippet,contentDetails',
+    'id': playlist_id
+  }).then(function(response) {
+    console.log("response", response);
+    var selectedPlaylist = response.result.items[0];
+    document.querySelector("#selectedPlaylistTitle").innerHTML = selectedPlaylist.snippet.title;
+  });
+
+  //Appel API pour récuperer les vidéos de la playlist selectionnée;
+  var list = document.getElementById('selectedPlaylistVideos');
+  list.innerHTML = "";
+  gapi.client.youtube.playlistItems.list({
+    'maxResults': '25',
+    'part': 'snippet,contentDetails',
+    'playlistId': playlist_id
+  }).then(function(response) {
+    console.log("response", response);
+    var videos = response.result.items;
+    videos.forEach(function(video){
+      console.log(video.snippet.title);
+      var li = document.createElement('li');
+      var span = document.createElement('span');
+      li.innerHTML = '<img src="'+ video.snippet.thumbnails.medium.url + '" /> ';
+      span.innerHTML = video.snippet.title;
+      li.append(span);
+      list.appendChild(li);
+    });
   });
 }
 

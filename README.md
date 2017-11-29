@@ -17,3 +17,7 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 -		. nb vues
 -		. nbVideos
 -		. nbMoy de vues par vidéo
+
+
+>>> Lancer le serveur
+py -m http.server 8000
