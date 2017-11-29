@@ -150,8 +150,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   
   //Changement de class pour le li selectionné
   allLi = document.querySelectorAll("#playlists_list li");
-  
-  allLi.forEach(function(li){
+  Array.from(allLi).forEach(function(li){ //allLi est un nodeList et non un array. forEach ne marchAIT pas pour les nodelist sur les anciens navigateurs donc il faut les transformer en array.
     li.classList.remove('selected');
   })
   clicked_li.classList.add('selected');
