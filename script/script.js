@@ -134,12 +134,11 @@ function getPlaylists(id) {
       li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
       span.innerHTML = playlist.snippet.title + ' ('+ playlist.contentDetails.itemCount + ')';
       // div.style.position = "relative";
-      div.append(span)
-      li.append(div);
+      div.appendChild(span);
+      li.appendChild(div);
       li.setAttribute('onclick', "selectPlaylist(this, '" + String(playlist.id) + "');");
       list.appendChild(li);
     });
-    
   });
 }
 
@@ -150,7 +149,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   
   //Changement de class pour le li selectionné
   allLi = document.querySelectorAll("#playlists_list li");
-  allLi.forEach(function(li){
+  Array.from(allLi).forEach(function(li){ //allLi est un nodeList et non un array. forEach ne marchAIT pas pour les nodelist sur les anciens navigateurs donc il faut les transformer en array.
     li.classList.remove('selected');
   })
   clicked_li.classList.add('selected');
@@ -183,7 +182,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
       var span = document.createElement('span');
       li.innerHTML = '<img src="'+ video.snippet.thumbnails.medium.url + '" /> ';
       span.innerHTML = video.snippet.title;
-      li.append(span);
+      li.appendChild(span);
       list.appendChild(li);
     });
   });
