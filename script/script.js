@@ -134,12 +134,12 @@ function getPlaylists(id) {
       li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
       span.innerHTML = playlist.snippet.title + ' ('+ playlist.contentDetails.itemCount + ')';
       // div.style.position = "relative";
-      div.append(span)
-      li.append(div);
+      div.appendChild(span);
+      li.appendChild(div);
       li.setAttribute('onclick', "selectPlaylist(this, '" + String(playlist.id) + "');");
       list.appendChild(li);
     });
-    
+
   });
 }
 
@@ -150,6 +150,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   
   //Changement de class pour le li selectionné
   allLi = document.querySelectorAll("#playlists_list li");
+  
   allLi.forEach(function(li){
     li.classList.remove('selected');
   })
@@ -181,9 +182,9 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
       console.log(video.snippet.title);
       var li = document.createElement('li');
       var span = document.createElement('span');
-      li.innerHTML = '<img src="'+ video.snippet.thumbnails.medium.url + '" /> ';
+      li.innerHTML = '<img src="'+ video.snippet.thumbnails.default.url + '" /> ';
       span.innerHTML = video.snippet.title;
-      li.append(span);
+      li.appendChild(span);
       list.appendChild(li);
     });
   });
