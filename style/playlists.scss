@@ -28,6 +28,10 @@
 		}
 	}
 	#playlists{
+		.refresh{
+			font-size: 0.7em;
+			cursor: pointer;
+		}
 		ul{
 			list-style: none;
 			li{
@@ -39,6 +43,8 @@
 				font-size: 1em;
 				font-weight: bold;
 				cursor: pointer;
+				transition: 1s;
+				animation: fadein 1s;
 				&.selected{
 					background-color: #fff;
 					color: #f34141;
@@ -82,7 +88,7 @@ section#main_content{
 @keyframes spin { 
 	100% { 
 		-webkit-transform: rotate(360deg); 
-		transform: rotate(360deg); 
+		transform: rotate(360deg);
 	}
 }
 
@@ -93,6 +99,7 @@ div.addPlaylist{
 		border: 0;
 		background-color: white;
 		color: #f34141;
+		border-radius: 3px 0 0 3px;
 	}
 	button {
 		padding: 10px 15px;
@@ -100,8 +107,14 @@ div.addPlaylist{
 		border: 0;
 		color: white;
 		font-weight: bold;
-		border-radius: 3px;
+		border-radius: 0 3px 3px 0;
+		margin-left: -3px;
 		cursor: pointer;
 		transition: .5s;
 	}
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

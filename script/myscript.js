@@ -28,3 +28,9 @@ create_playlist_form.addEventListener("submit", function(e){
 	createPlaylist(title);
 	title.innerHTML = "";
 });
+
+
+var refresh = document.querySelector("#playlists .refresh");
+refresh.onclick = function(){
+	getPlaylists();
+}

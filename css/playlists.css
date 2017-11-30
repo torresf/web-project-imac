@@ -22,6 +22,9 @@
       color: #bbb;
       animation: spin 4s linear infinite;
       font-size: 3em; }
+  #left_aside #playlists .refresh {
+    font-size: 0.7em;
+    cursor: pointer; }
   #left_aside #playlists ul {
     list-style: none; }
     #left_aside #playlists ul li {
@@ -32,7 +35,9 @@
       background-color: #e8e8e8;
       font-size: 1em;
       font-weight: bold;
-      cursor: pointer; }
+      cursor: pointer;
+      transition: 1s;
+      animation: fadein 1s; }
       #left_aside #playlists ul li.selected {
         background-color: #fff;
         color: #f34141; }
@@ -68,13 +73,21 @@ div.addPlaylist input {
   padding: 10px;
   border: 0;
   background-color: white;
-  color: #f34141; }
+  color: #f34141;
+  border-radius: 3px 0 0 3px; }
 div.addPlaylist button {
   padding: 10px 15px;
   background-color: #f34141;
   border: 0;
   color: white;
   font-weight: bold;
-  border-radius: 3px;
+  border-radius: 0 3px 3px 0;
+  margin-left: -3px;
   cursor: pointer;
   transition: .5s; }
+
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
