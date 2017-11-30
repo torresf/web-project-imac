@@ -6,7 +6,7 @@ var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/youtube/v3/r
 
 // Authorization scopes required by the API. If using multiple scopes,
 // separated them with spaces.
-var SCOPES = 'https://www.googleapis.com/auth/youtube.readonly';
+var SCOPES = 'https://www.googleapis.com/auth/youtube';
 
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
@@ -115,23 +115,35 @@ function getChannel(username) {
  */
 function getPlaylists(id) {
   var loader = document.getElementById('loader');
-  loader.style.display = 'block';
+  loader.style.display = 'block';   //On affiche le loader
   var list = document.getElementById('playlists_list');
-  list.innerHTML = "";
+  list.innerHTML = "";    //On vide la liste de playlist
 
-  gapi.client.youtube.playlists.list({
+  var params = {
     'maxResults': '25',
-    'part': 'snippet,contentDetails',
-    "channelId": id
-  }).then(function(response) {
+    'part': 'snippet,contentDetails,status',
+    'mine': true
+  }
+  if (id) {
+    params = {
+      'maxResults': '25',
+      'part': 'snippet,contentDetails,status',
+      "channelId": id
+    }
+  }
+
+  gapi.client.youtube.playlists.list(params).then(function(response) {
     loader.style.display = 'none';
     var playlists = response.result.items;
+    console.log("playlist", playlists);
     playlists.forEach(function(playlist, index){
       index++;
       var li = document.createElement('li');
       var span = document.createElement('span');
-      var div = document.createElement('div');
+      var content = document.createElement('div');
+      content.classList.add("content");
       var numberOfVideos = document.createElement('span');
+      var status = playlist.status.privacyStatus;
       li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
       span.innerHTML = playlist.snippet.title;
       if (playlist.contentDetails.itemCount > 1) {
@@ -140,13 +152,22 @@ function getPlaylists(id) {
         numberOfVideos.innerHTML = playlist.contentDetails.itemCount + " vidéo";
       }
       numberOfVideos.classList.add("numberOfVideos");
-      div.appendChild(span);
-      div.appendChild(numberOfVideos);
-      li.appendChild(div);
-      li.setAttribute('onclick', "selectPlaylist(this, '" + String(playlist.id) + "');");
+      content.appendChild(span);
+      content.appendChild(numberOfVideos);
+      console.log("Status", status);
+      if (status == "private") {
+        console.log('inIf');
+        var cadenas = document.createElement('div');
+        cadenas.classList.add("cadenas");
+        cadenas.innerHTML = "<i class='fa fa-lock' aria-hidden='true' title='Playlist privée'></i>";
+        content.appendChild(cadenas);
+      }
+      li.appendChild(content);
+      li.addEventListener("click", function(){
+        selectPlaylist(li, String(playlist.id))
+      });
       list.appendChild(li);
     });
-
   });
 }
 
@@ -169,7 +190,6 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     'part': 'snippet,contentDetails',
     'id': playlist_id
   }).then(function(response) {
-    console.log("response", response);
     var selectedPlaylist = response.result.items[0];
     document.querySelector("#selectedPlaylistTitle").innerHTML = selectedPlaylist.snippet.title;
   });
@@ -182,10 +202,8 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     'part': 'snippet,contentDetails',
     'playlistId': playlist_id
   }).then(function(response) {
-    console.log("response", response);
     var videos = response.result.items;
     videos.forEach(function(video){
-      console.log(video.snippet.title);
       var li = document.createElement('li');
       var span = document.createElement('span');
       li.innerHTML = '<img src="'+ video.snippet.thumbnails.default.url + '" /> ';
@@ -196,3 +214,32 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   });
 }
 
+/**
+ * Create Playlist
+ */
+function createPlaylist(title) { //Ajouter également Description et Privacy en paramètres
+  if (!title) {
+    title = "Sans titre"
+  }
+  var request = gapi.client.youtube.playlists.insert({
+    part: 'snippet,status',
+    resource: {
+      snippet: {
+        title: title,
+        description: 'A private playlist created with the YouTube API'
+      },
+      status: {
+        privacyStatus: 'private'
+      }
+    }
+  });
+  request.execute(function(response) {
+    var result = response.result;
+    if (result) {
+      console.log("RESULT : ", result);
+      getPlaylists();
+    } else {
+      console.log('Could not create playlist');
+    }
+  });
+}

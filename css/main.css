@@ -42,15 +42,32 @@ body {
 h2 {
   color: black;
   font-size: 1.3em;
-  font-weight: 900; }
+  font-weight: 900;
+  margin-bottom: 10px; }
+
+#signout-button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #f34141;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; }
+
+input:focus, input:active {
+  outline: none; }
 
 #left_aside {
   background-color: #eee;
   width: 30%;
-  height: 500px;
   position: relative;
   float: left;
-  padding: 10px; }
+  padding: 20px; }
   #left_aside #account {
     padding: 20px 10px 10px 10px;
     text-align: center; }
@@ -69,44 +86,37 @@ h2 {
       color: #bbb;
       animation: spin 4s linear infinite;
       font-size: 3em; }
-  #left_aside #playlists {
-    padding: 10px; }
-    #left_aside #playlists ul {
-      list-style: none; }
-      #left_aside #playlists ul li {
-        position: relative;
-        height: 60px;
-        padding: 10px;
-        margin: 10px 0;
-        background-color: #ddd;
-        font-size: 1em;
-        font-weight: bold;
-        cursor: pointer; }
-        #left_aside #playlists ul li.selected {
-          background-color: #fff;
-          color: #f34141; }
-        #left_aside #playlists ul li img {
-          float: left;
-          top: 0;
-          left: 0;
-          height: 100%; }
-        #left_aside #playlists ul li div {
-          float: left;
-          margin-left: 10px; }
-          #left_aside #playlists ul li div span.numberOfVideos {
-            display: block;
-            font-size: .8em;
-            margin-top: 5px;
-            font-weight: normal; }
-  #left_aside button {
-    padding: 10px 15px;
-    background-color: white;
-    border: 1px solid #fbb9b9;
-    color: #f34141;
-    font-weight: bold;
-    border-radius: 3px;
-    cursor: pointer;
-    transition: .5s; }
+  #left_aside #playlists ul {
+    list-style: none; }
+    #left_aside #playlists ul li {
+      position: relative;
+      height: 60px;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #e8e8e8;
+      font-size: 1em;
+      font-weight: bold;
+      cursor: pointer; }
+      #left_aside #playlists ul li.selected {
+        background-color: #fff;
+        color: #f34141; }
+      #left_aside #playlists ul li img {
+        float: left;
+        top: 0;
+        left: 0;
+        height: 100%; }
+      #left_aside #playlists ul li div.content {
+        float: left;
+        margin-left: 10px; }
+        #left_aside #playlists ul li div.content span.numberOfVideos {
+          display: block;
+          font-size: .8em;
+          margin-top: 5px;
+          font-weight: normal; }
+        #left_aside #playlists ul li div.content .cadenas {
+          position: absolute;
+          top: 10px;
+          right: 10px; }
 
 section#main_content {
   float: left;
@@ -118,16 +128,17 @@ section#main_content {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
-#signout-button {
-  margin: 10px;
+div.addPlaylist input {
   padding: 10px;
-  font-size: 1.2em;
-  cursor: pointer;
-  background-color: #f34141;
-  color: white;
   border: 0;
-  border-radius: 2px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  z-index: 1; }
+  background-color: white;
+  color: #f34141; }
+div.addPlaylist button {
+  padding: 10px 15px;
+  background-color: #f34141;
+  border: 0;
+  color: white;
+  font-weight: bold;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .5s; }

@@ -6,6 +6,7 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - Modifier une playlist déjà existante (Nom, Description, etc...)
 - Ajouter / Supprimer un élément à la playlist
 - Popup validation / erreur pour chaque fonctionnalité
+- Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités)
 
 
 >>> Idée : Comparaison de chaînes Youtubes ?
@@ -19,12 +20,12 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 >>> Idée TOM ?
 - Connexion (popup sur fond blanc)
 - Un champ de recherche de chaine YT
-- plusieurs boutons (Playlists, Info Chaine, Infos Vidéos)
-- 
+- 3 pages/boutons (Playlists, Info Chaine, Infos Vidéos)
 
 
 
 >>> Lancer le serveur
--		py -m http.server 8000
--				OU
-- 		python3 -m http.server 8000
+- 		PYTHON 2.X : 	python -m SimpleHTTPServer 8000
+-		PYTHON 3.X : 	py -m http.server 8000
+-							OU
+-	 					python3 -m http.server 8000

@@ -5,4 +5,22 @@ body {
 h2 {
   color: black;
   font-size: 1.3em;
-  font-weight: 900; }
+  font-weight: 900;
+  margin-bottom: 10px; }
+
+#signout-button {
+  margin: 10px;
+  padding: 10px;
+  font-size: 1.2em;
+  cursor: pointer;
+  background-color: #f34141;
+  color: white;
+  border: 0;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1; }
+
+input:focus, input:active {
+  outline: none; }
