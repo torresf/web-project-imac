@@ -36,15 +36,15 @@
       font-size: 1em;
       font-weight: bold;
       cursor: pointer;
-      transition: 1s;
+      transition: .3s;
       animation: fadein 1s; }
+      #left_aside #playlists ul li:hover {
+        background-color: #f5f5f5; }
       #left_aside #playlists ul li.selected {
         background-color: #fff;
         color: #f34141; }
       #left_aside #playlists ul li img {
         float: left;
-        top: 0;
-        left: 0;
         height: 100%; }
       #left_aside #playlists ul li div.content {
         float: left;
@@ -63,26 +63,36 @@ section#main_content {
   float: left;
   padding: 10px; }
   section#main_content ul#selectedPlaylistVideos li {
-    margin: 5px 0; }
+    margin: 5px 0;
+    padding: 5px;
+    height: 50px; }
+    section#main_content ul#selectedPlaylistVideos li img {
+      height: 100%;
+      float: left; }
+    section#main_content ul#selectedPlaylistVideos li span {
+      font-weight: bold;
+      margin-left: 10px;
+      color: black;
+      text-decoration: none; }
+    section#main_content ul#selectedPlaylistVideos li:hover {
+      background-color: #eee; }
 
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg); } }
-div.addPlaylist input {
+div.addPlaylist input, div.addPlaylist select, div.addPlaylist option {
   padding: 10px;
   border: 0;
   background-color: white;
-  color: #f34141;
-  border-radius: 3px 0 0 3px; }
+  border-radius: 3px; }
 div.addPlaylist button {
   padding: 10px 15px;
   background-color: #f34141;
   border: 0;
   color: white;
   font-weight: bold;
-  border-radius: 0 3px 3px 0;
-  margin-left: -3px;
+  border-radius: 3px;
   cursor: pointer;
   transition: .5s; }
 

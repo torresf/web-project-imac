@@ -7,6 +7,8 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - Ajouter / Supprimer un élément à la playlist
 - Popup validation / erreur pour chaque fonctionnalité
 - Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités)
+- Modal pour voir la vidéo au clic
+- Chargement des playlists en différé (chacun son tour, avec un setTimeout)
 
 
 >>> Idée : Comparaison de chaînes Youtubes ?
@@ -29,3 +31,7 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 -		PYTHON 3.X : 	py -m http.server 8000
 -							OU
 -	 					python3 -m http.server 8000
+
+
+>>> A demander à Lucas
+

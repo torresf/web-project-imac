@@ -21,7 +21,7 @@
                 <h2 id="channel_title"></h2>
             </section>
             <div id="playlists">
-                <h2>Playlists <i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
+                <h2>Playlists  <i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
                 <div id="loader">
                     <i class="fa fa-spinner" aria-hidden="true"></i>
                 </div>
@@ -32,6 +32,11 @@
                 <h2>Ajouter une playlist</h2>
                 <form id="create_playlist_form">
                     <input type="text" name="new_playlist_title" id="new_playlist_title" placeholder="Titre de la playlist">
+                    <select id="new_playlist_privacy_status">
+                        <option value="private">Privée</option>
+                        <option value="public">Publique</option>
+                        <option value="unlisted">Non répertoriée</option>
+                    </select>
                     <button type="submit" id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i> Créer</button>
                 </form>
             </div>

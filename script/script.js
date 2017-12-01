@@ -47,7 +47,6 @@ function updateSigninStatus(isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
     getChannel();
-
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
@@ -68,20 +67,15 @@ function handleSignoutClick(event) {
   gapi.auth2.getAuthInstance().signOut();
 }
 
-/**
- * Append text to a pre element in the body, adding the given message
- * to a text node in that element. Used to display info from API response.
- *
- * @param {string} message Text to be placed in pre element.
- */
-function appendPre(message) {
-  var pre = document.getElementById('content');
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
-}
 
 /**
- * Print files.
+ * Global Variables 
+ */
+var mychannel = true;
+
+
+/**
+ * Get Channel 
  */
 function getChannel(username) {
   var params = {
@@ -93,6 +87,7 @@ function getChannel(username) {
       'part': 'snippet,contentDetails,statistics',
       'forUsername': username,
     }
+    mychannel = false;
   }
   
   gapi.client.youtube.channels.list(params).then(function(response) {
@@ -209,14 +204,19 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     'part': 'snippet,contentDetails',
     'playlistId': playlist_id
   }).then(function(response) {
+    list.innerHTML = "";
     var videos = response.result.items;
     videos.forEach(function(video){
+      var a = document.createElement('a');
       var li = document.createElement('li');
-      var span = document.createElement('span');
+      var videoTitle = document.createElement('span');
+      a.setAttribute('href', "https://www.youtube.com/watch?v=" + video.contentDetails.videoId);
+      a.setAttribute('target', "_blank");
       li.innerHTML = '<img src="'+ video.snippet.thumbnails.default.url + '" /> ';
-      span.innerHTML = video.snippet.title;
-      li.appendChild(span);
-      list.appendChild(li);
+      videoTitle.innerHTML = video.snippet.title;
+      li.appendChild(videoTitle);
+      a.appendChild(li);
+      list.appendChild(a);
     });
   });
 }
@@ -224,19 +224,23 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
 /**
  * Create Playlist
  */
-function createPlaylist(title) { //Ajouter également Description et Privacy en paramètres
+function createPlaylist(title, privacyStatus) {
   if (!title) {
-    title = "Sans titre"
+    title = "Sans titre";
   }
+  if (!privacyStatus) {
+    privacyStatus = "private";
+  }
+
   var request = gapi.client.youtube.playlists.insert({
     part: 'snippet,status,contentDetails',
     resource: {
       snippet: {
         title: title,
-        description: 'A private playlist created with the YouTube API'
+        description: 'Playlist created with the YouTube API'
       },
       status: {
-        privacyStatus: 'private'
+        privacyStatus: privacyStatus
       }
     }
   });
@@ -244,7 +248,6 @@ function createPlaylist(title) { //Ajouter également Description et Privacy en 
     var result = response.result;
     if (result) {
       console.log("createPlaylist Result : ", result);
-      // getPlaylists(); 
       playlist = result;
       var li = document.createElement('li');
       var span = document.createElement('span');
@@ -284,7 +287,7 @@ function createPlaylist(title) { //Ajouter également Description et Privacy en 
 /**
  * Delete Playlist
  */
-function deletePlaylist(playlist_id) { //Ajouter également Description et Privacy en paramètres
+function deletePlaylist(playlist_id) {
   gapi.client.youtube.playlists.delete({
     'id': playlist_id
   }).then(function(response) {
