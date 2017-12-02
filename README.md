@@ -9,6 +9,7 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités)
 - Modal pour voir la vidéo au clic
 - Chargement des playlists en différé (chacun son tour, avec un setTimeout)
+- Ajouter un bouton Paramètres (choix de la couleur etc.)
 
 
 >>> Idée : Comparaison de chaînes Youtubes ?

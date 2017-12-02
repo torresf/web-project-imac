@@ -1,8 +1,3 @@
-// document.getElementById('add_playlist').onclick = function(){
-// 	console.log('Appel getPlaylists');
-// 	getPlaylists();
-// };
-
 var search_channel_form = document.getElementById('searchByUsername');
 
 search_channel_form.addEventListener("submit", function(e){
@@ -24,7 +19,34 @@ create_playlist_form.addEventListener("submit", function(e){
 	title.innerHTML = "";
 });
 
+var edit_playlist_form = document.getElementById('edit_playlist_form');
+
+edit_playlist_form.addEventListener("submit", function(e){
+	e.preventDefault();
+	console.log('Modification de la playlist...');
+	var title = document.getElementById('edit_playlist_title').value;
+	var select = document.getElementById('edit_playlist_privacy_status');
+	privacy_status = select.options[select.selectedIndex].value;
+	editPlaylist(title, privacy_status);
+	title.innerHTML = "";
+});
+
 var refresh = document.querySelector("#playlists .refresh");
 refresh.onclick = function(){
 	getPlaylists();
 }
+
+
+
+var left_aside = document.getElementById('left_aside');
+var authorize_modal = document.getElementById('authorize_modal');
+
+var setAsideSize = function(){
+	left_aside.style.height = window.innerHeight + "px";
+}
+
+window.addEventListener('resize', setAsideSize);
+window.onload = function(){	
+	setAsideSize();
+}
+

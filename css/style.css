@@ -102,7 +102,7 @@ h2 {
     padding: 10px 15px;
     background-color: white;
     border: 1px solid #fbb9b9;
-    color: #f34141;
+    color: $main-color;
     font-weight: bold;
     border-radius: 3px;
     cursor: pointer;
@@ -120,7 +120,7 @@ section#main_content {
   padding: 10px;
   font-size: 1.2em;
   cursor: pointer;
-  background-color: #f34141;
+  background-color: $main-color;
   color: white;
   border: 0;
   border-radius: 2px;

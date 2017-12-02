@@ -10,6 +10,7 @@ var SCOPES = 'https://www.googleapis.com/auth/youtube';
 
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
+var authorize_modal = document.getElementById('authorize_modal');
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -44,11 +45,12 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
-    authorizeButton.style.display = 'none';
+    authorize_modal.style.display = 'none';
     signoutButton.style.display = 'block';
+    initContent();
     getChannel();
   } else {
-    authorizeButton.style.display = 'block';
+    authorize_modal.style.display = 'block';
     signoutButton.style.display = 'none';
   }
 }
@@ -71,7 +73,29 @@ function handleSignoutClick(event) {
 /**
  * Global Variables 
  */
-var mychannel = true;
+var addPlaylistBlock = document.getElementById('addPlaylist');
+var delete_playlist_button = document.getElementById('delete_playlist_button');
+var channel_thumbnail = document.getElementById('channel_thumbnail');
+var channel_title = document.getElementById('channel_title');
+var selectedPlaylistTitle = document.getElementById("selectedPlaylistTitle");
+var editPlaylistTitleInput = document.getElementById("edit_playlist_title");
+var editPlaylistTitleSelect = document.getElementById("edit_playlist_privacy_status");
+var editPlaylistButton = document.getElementById("edit_playlist_button");
+var editPlaylistBlock = document.getElementById("editPlaylist");
+
+var selectedPlaylist; //Objet JS correpondant à la playlist selectionnée
+var myChannel = true; //Permet de savoir si on est sur notre compte ou sur une recherche différente
+
+/**
+ * Init Content
+ */
+function initContent(){
+  channel_thumbnail.src = "img/default_picture.png";
+  channel_title.innerHTML = "Pas de résultat";
+  edit_playlist_button.onclick = function(){
+    toggle(editPlaylistBlock);
+  }
+}
 
 
 /**
@@ -87,26 +111,36 @@ function getChannel(username) {
       'part': 'snippet,contentDetails,statistics',
       'forUsername': username,
     }
-    mychannel = false;
+    myChannel = false;
+  } else {
+    myChannel = true;
   }
-  
+
   gapi.client.youtube.channels.list(params).then(function(response) {
     console.log(response);
     var channel = response.result.items[0];
     if (channel) {
-      var channel_title = document.getElementById('channel_title');
       channel_title.innerHTML = channel.snippet.title;
-      var channel_thumbnail = document.getElementById('channel_thumbnail');
       channel_thumbnail.src = channel.snippet.thumbnails.default.url;
       getPlaylists(channel.id);
+
+      if (myChannel == false) {
+        addPlaylistBlock.classList.add("hide");
+        addPlaylistBlock.classList.remove("show");
+      } else {
+        addPlaylistBlock.classList.add("show");
+        addPlaylistBlock.classList.remove("hide");
+      }
     } else {
+      initContent();
       console.log("Aucun utilisateur avec ce pseudo");
     }
   });
 }
 
+
 /**
- * Print files.
+ * Get all playlists from current channel
  */
 function getPlaylists(id) {
   var loader = document.getElementById('loader');
@@ -129,9 +163,10 @@ function getPlaylists(id) {
   }
 
   gapi.client.youtube.playlists.list(params).then(function(response) {
-    loader.style.display = 'none'; //On cache le loader
+    loader.style.display = 'none'; //On cache le loader dès qu'on obtient une réponse
     var playlists = response.result.items;
     console.log("playlist", playlists);
+    var time = 0;
     playlists.forEach(function(playlist, index){
       var li = document.createElement('li');
       var span = document.createElement('span');
@@ -159,13 +194,17 @@ function getPlaylists(id) {
       li.addEventListener("click", function(){
         selectPlaylist(li, String(playlist.id))
       });
-      list.appendChild(li);
+      setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
+        list.appendChild(li);
+      }, time);
+      time+=100; //Temps d'attente entre chaque élément de la liste (en ms)
       if (index == 0) {
-        selectPlaylist(li, String(playlist.id)); //Permet de selectionner la première playlist au chargement
+        selectPlaylist(li, String(playlist.id)); //Selectionne la première playlist au chargement
       }
     });
   });
 }
+
 
 /**
  * Select Playlist
@@ -179,22 +218,28 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   })
   clicked_li.classList.add('selected');
 
-
   //Appel API pour récuperer la playlist selectionnée;
   gapi.client.youtube.playlists.list({
     'maxResults': '25',
-    'part': 'snippet,contentDetails',
+    'part': 'snippet,contentDetails,status',
     'id': playlist_id
   }).then(function(response) {
-    var selectedPlaylist = response.result.items[0];
-    document.querySelector("#selectedPlaylistTitle").innerHTML = selectedPlaylist.snippet.title;
+    selectedPlaylist = response.result.items[0];
+    console.log("selectedPlaylist", selectedPlaylist);
+    selectedPlaylistTitle.innerHTML = selectedPlaylist.snippet.title;
+    editPlaylistTitleInput.value = selectedPlaylist.snippet.title;
+    editPlaylistTitleSelect.value = selectedPlaylist.status.privacyStatus;
   });
-
-  var delete_button = document.getElementById('delete_playlist_button');
-  delete_button.innerHTML = "Supprimer la playlist";
-  delete_button.onclick = function(){
-    deletePlaylist(playlist_id);
+  if (myChannel) {
+    delete_playlist_button.innerHTML = "Supprimer la playlist";
+    delete_playlist_button.onclick = function(){
+      deletePlaylist(playlist_id);
+    }
+  } else {
+    delete_playlist_button.classList.add("hide");
+    delete_playlist_button.classList.remove("show");
   }
+  
 
   //Appel API pour récuperer les vidéos de la playlist selectionnée;
   var list = document.getElementById('selectedPlaylistVideos');
@@ -206,6 +251,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   }).then(function(response) {
     list.innerHTML = "";
     var videos = response.result.items;
+    var time = 0;
     videos.forEach(function(video){
       var a = document.createElement('a');
       var li = document.createElement('li');
@@ -216,7 +262,10 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
       videoTitle.innerHTML = video.snippet.title;
       li.appendChild(videoTitle);
       a.appendChild(li);
-      list.appendChild(a);
+      setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
+        list.appendChild(a);
+      }, time);
+      time+= 50;
     });
   });
 }
@@ -224,13 +273,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
 /**
  * Create Playlist
  */
-function createPlaylist(title, privacyStatus) {
-  if (!title) {
-    title = "Sans titre";
-  }
-  if (!privacyStatus) {
-    privacyStatus = "private";
-  }
+function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut
 
   var request = gapi.client.youtube.playlists.insert({
     part: 'snippet,status,contentDetails',
@@ -244,6 +287,7 @@ function createPlaylist(title, privacyStatus) {
       }
     }
   });
+
   request.execute(function(response) {
     var result = response.result;
     if (result) {
@@ -283,6 +327,32 @@ function createPlaylist(title, privacyStatus) {
   });
 }
 
+/**
+ * Edit Playlist
+ */
+function editPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut
+
+  var request = gapi.client.youtube.playlists.update({
+    part: 'snippet,status',
+    snippet: {
+      title: title,
+      description: 'New description'
+    },
+    status: {
+      privacyStatus: privacyStatus
+    },
+    id: selectedPlaylist.id
+  });
+  request.execute(function(response) {
+    var result = response.result;
+    if (result) {
+      getPlaylists();
+    } else {
+      console.log('Could not edit playlist');
+    }
+  });
+}
+
 
 /**
  * Delete Playlist
@@ -294,4 +364,14 @@ function deletePlaylist(playlist_id) {
     console.log("Playlist supprimée", response);
     getPlaylists();
   });
+}
+
+
+function toggle(element){
+  var classList = element.classList;
+  if (classList.contains('hide')){
+    classList.remove('hide');
+  } else {
+    classList.add('hide');
+  }
 }
