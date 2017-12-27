@@ -78,7 +78,9 @@ var delete_playlist_button = document.getElementById('delete_playlist_button');
 var channel_thumbnail = document.getElementById('channel_thumbnail');
 var channel_title = document.getElementById('channel_title');
 var selectedPlaylistTitle = document.getElementById("selectedPlaylistTitle");
+var selectedPlaylistDescription = document.getElementById("selectedPlaylistDescription");
 var editPlaylistTitleInput = document.getElementById("edit_playlist_title");
+var editPlaylistDescriptionInput = document.getElementById("edit_playlist_description");
 var editPlaylistTitleSelect = document.getElementById("edit_playlist_privacy_status");
 var editPlaylistButton = document.getElementById("edit_playlist_button");
 var editPlaylistBlock = document.getElementById("editPlaylist");
@@ -95,6 +97,7 @@ function initContent(){
   edit_playlist_button.onclick = function(){
     toggle(editPlaylistBlock);
   }
+  document.getElementById("playlists_list").innerHTML = "";
 }
 
 
@@ -216,7 +219,12 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   Array.from(allLi).forEach(function(li){ //allLi est un nodeList et non un array. forEach ne marchAIT pas pour les nodelist sur les anciens navigateurs donc il faut les transformer en array.
     li.classList.remove('selected');
   })
-  clicked_li.classList.add('selected');
+  if (clicked_li) {
+    clicked_li.classList.add('selected');
+  } else {
+
+  }
+  
 
   //Appel API pour récuperer la playlist selectionnée;
   gapi.client.youtube.playlists.list({
@@ -227,17 +235,19 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     selectedPlaylist = response.result.items[0];
     console.log("selectedPlaylist", selectedPlaylist);
     selectedPlaylistTitle.innerHTML = selectedPlaylist.snippet.title;
+    selectedPlaylistDescription.innerHTML = selectedPlaylist.snippet.description;
     editPlaylistTitleInput.value = selectedPlaylist.snippet.title;
+    editPlaylistDescriptionInput.value = selectedPlaylist.snippet.description;
     editPlaylistTitleSelect.value = selectedPlaylist.status.privacyStatus;
   });
+
   if (myChannel) {
-    delete_playlist_button.innerHTML = "Supprimer la playlist";
     delete_playlist_button.onclick = function(){
       deletePlaylist(playlist_id);
     }
+    editPlaylistButton.style.display = "inline-block";
   } else {
-    delete_playlist_button.classList.add("hide");
-    delete_playlist_button.classList.remove("show");
+    editPlaylistButton.style.display = "none";
   }
   
 
@@ -275,6 +285,12 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
  */
 function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut
 
+  if (!title) {
+    title = "Sans titre";
+  }
+  if (!privacyStatus) {
+    privacyStatus = "private";
+  }
   var request = gapi.client.youtube.playlists.insert({
     part: 'snippet,status,contentDetails',
     resource: {
@@ -330,13 +346,12 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
 /**
  * Edit Playlist
  */
-function editPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut
-
+function editPlaylist(title = "Sans Titre", description, privacyStatus = "private") { //Valeurs par défaut
   var request = gapi.client.youtube.playlists.update({
     part: 'snippet,status',
     snippet: {
       title: title,
-      description: 'New description'
+      description: description
     },
     status: {
       privacyStatus: privacyStatus
@@ -347,6 +362,7 @@ function editPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeu
     var result = response.result;
     if (result) {
       getPlaylists();
+      toggle(editPlaylistBlock);
     } else {
       console.log('Could not edit playlist');
     }
@@ -361,8 +377,12 @@ function deletePlaylist(playlist_id) {
   gapi.client.youtube.playlists.delete({
     'id': playlist_id
   }).then(function(response) {
-    console.log("Playlist supprimée", response);
-    getPlaylists();
+    console.log("Suppression en cours...");
+    setTimeout(function(){
+      getPlaylists();
+      toggle(editPlaylistBlock);
+      console.log("Playlist supprimée !");
+    }, 500);
   });
 }
 
@@ -374,4 +394,13 @@ function toggle(element){
   } else {
     classList.add('hide');
   }
+  if (classList.contains('show')){
+    classList.remove('show');
+  } else {
+    classList.add('show');
+  }
+}
+
+function toggleClass(element, classToToggle){
+  element.classList.toggle(classToToggle);
 }

@@ -10,29 +10,26 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - Modal pour voir la vidéo au clic
 - Chargement des playlists en différé (chacun son tour, avec un setTimeout)
 - Ajouter un bouton Paramètres (choix de la couleur etc.)
+- Recherche un utilisateur ? Si oui, notification si l'utilisateur n'existe pas
+- Créer un système de notification 
+- Bouton mon compte, deconnexion en haut à gauche
+- Changer Le format des vignettes
+- modification de la playlist : Ajouter la description + Afficher description en dessous du titre
+- Ajouter bouton "mes playlists"
 
-
->>> Idée : Comparaison de chaînes Youtubes ?
-- Entrer deux noms d'utilisateurs, puis une liste de comparaisons sort :
--		. nb abonnés
--		. nb vues
--		. nbVideos
--		. nbMoy de vues par vidéo
-
-
->>> Idée TOM ?
-- Connexion (popup sur fond blanc)
-- Un champ de recherche de chaine YT
-- 3 pages/boutons (Playlists, Info Chaine, Infos Vidéos)
-
+>>> Idée TOM :
+-		Connexion (popup sur fond blanc)
+-		Un champ de recherche de chaine YT
+-		3 pages/boutons (Playlists, Info Chaine, Infos Vidéos)
 
 
 >>> Lancer le serveur
 - 		PYTHON 2.X : 	python -m SimpleHTTPServer 8000
 -		PYTHON 3.X : 	py -m http.server 8000
 -							OU
--	 					python3 -m http.server 8000
+-						python3 -m http.server 8000
 
 
->>> A demander à Lucas
+>>> Bug
+-		Ajout de playlist sans titre (valeurs par défaut)
 

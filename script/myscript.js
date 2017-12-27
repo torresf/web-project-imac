@@ -25,18 +25,16 @@ edit_playlist_form.addEventListener("submit", function(e){
 	e.preventDefault();
 	console.log('Modification de la playlist...');
 	var title = document.getElementById('edit_playlist_title').value;
+	var description = document.getElementById('edit_playlist_description').value;
 	var select = document.getElementById('edit_playlist_privacy_status');
 	privacy_status = select.options[select.selectedIndex].value;
-	editPlaylist(title, privacy_status);
-	title.innerHTML = "";
+	editPlaylist(title, description, privacy_status);
 });
 
 var refresh = document.querySelector("#playlists .refresh");
 refresh.onclick = function(){
 	getPlaylists();
 }
-
-
 
 var left_aside = document.getElementById('left_aside');
 var authorize_modal = document.getElementById('authorize_modal');
@@ -50,3 +48,12 @@ window.onload = function(){
 	setAsideSize();
 }
 
+window.addEventListener('click', function(e){
+	var classList = editPlaylistBlock.classList;
+	if (!editPlaylistBlock.contains(e.target) && !editPlaylistButton.contains(e.target)){
+		if (classList.contains('show')){
+			classList.remove('show');
+			classList.add('hide');
+		}
+	}
+});
