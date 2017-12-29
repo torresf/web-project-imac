@@ -45,16 +45,15 @@
                         <option value="public">Publique</option>
                         <option value="unlisted">Non répertoriée</option>
                     </select>
-                    <button id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                    <button id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </form>
             </div>
             <div id="playlists">
                 <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
-                <div id="loader">
+                <div id="playlist_loader" class="loader">
                     <i class="fa fa-spinner" aria-hidden="true"></i>
                 </div>
-                <ul id="playlists_list">
-                </ul>
+                <ul id="playlists_list"></ul>
             </div>
         </aside>
 
@@ -101,6 +100,9 @@
                 <button><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
 
+            <div id="search_video_loader" class="loader">
+                <i class="fa fa-spinner" aria-hidden="true"></i>
+            </div>
             <ul id="searchResults">
             </ul>
         </section>

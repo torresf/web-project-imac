@@ -1,7 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700,900");
 body {
   font-family: "Open Sans";
-  overflow: hidden; }
+  overflow: hidden;
+  -ms-user-select: none;
+  user-select: none; }
 
 h2 {
   color: #303030;
@@ -118,7 +120,7 @@ input, select, textarea {
   box-sizing: border-box; }
 
 textarea {
-  max-width: 200px;
+  max-width: 300px;
   max-height: 200px;
   min-width: 100%;
   min-height: 50px;
@@ -126,3 +128,26 @@ textarea {
 
 input[type="submit"] {
   cursor: pointer; }
+
+.loader {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+  .loader i {
+    color: #bbb;
+    animation: spin 4s linear infinite;
+    font-size: 3em; }
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.9); }
+  to {
+    opacity: 1;
+    transform: scale(1); } }

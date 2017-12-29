@@ -105,3 +105,4 @@ function defineRequest() {
 		'rating': 'like'
 	});
 }
+

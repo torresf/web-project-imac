@@ -38,7 +38,9 @@ table {
 
 body {
   font-family: "Open Sans";
-  overflow: hidden; }
+  overflow: hidden;
+  -ms-user-select: none;
+  user-select: none; }
 
 h2 {
   color: #303030;
@@ -155,7 +157,7 @@ input, select, textarea {
   box-sizing: border-box; }
 
 textarea {
-  max-width: 200px;
+  max-width: 300px;
   max-height: 200px;
   min-width: 100%;
   min-height: 50px;
@@ -164,6 +166,28 @@ textarea {
 input[type="submit"] {
   cursor: pointer; }
 
+.loader {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); }
+  .loader i {
+    color: #bbb;
+    animation: spin 4s linear infinite;
+    font-size: 3em; }
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.9); }
+  to {
+    opacity: 1;
+    transform: scale(1); } }
 #left_aside {
   background-color: #f6f6f6;
   width: 30%;
@@ -221,22 +245,22 @@ input[type="submit"] {
         cursor: pointer; }
         #left_aside .accounts .account#myaccount.mini .channel_thumbnail {
           height: 45px; }
-  #left_aside #loader {
-    display: none;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%); }
-    #left_aside #loader i {
-      color: #bbb;
-      animation: spin 4s linear infinite;
-      font-size: 3em; }
   #left_aside #playlists {
     position: relative; }
     #left_aside #playlists .refresh {
       font-size: 0.8em;
       margin-left: 10px;
       cursor: pointer; }
+    #left_aside #playlists #playlist_loader {
+      display: none;
+      position: absolute;
+      left: 50%;
+      top: 100px;
+      transform: translateX(-50%); }
+      #left_aside #playlists #playlist_loader i {
+        color: #bbb;
+        animation: spin 4s linear infinite;
+        font-size: 3em; }
     #left_aside #playlists ul#playlists_list {
       list-style: none; }
       #left_aside #playlists ul#playlists_list li {
@@ -281,7 +305,8 @@ input[type="submit"] {
       padding: 10px;
       border: 0;
       background-color: white;
-      border-radius: 3px; }
+      border-radius: 3px;
+      box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.25); }
     #left_aside div#addPlaylist button {
       background-color: #f34141;
       border: 0;
@@ -336,17 +361,21 @@ section#main_content {
     position: absolute;
     top: 70px;
     z-index: 10;
+    padding-bottom: 10px;
     border: 4px solid;
-    padding: 10px;
     border-radius: 2px;
-    border-color: #eeeeee;
-    background-color: white;
+    border-color: #eee;
+    background-color: #eee;
     box-shadow: 0px 5px 8px -2px rgba(0, 0, 0, 0.3);
     transition: .3s; }
     section#main_content #editPlaylist.show {
       top: 90px; }
     section#main_content #editPlaylist.hide {
       top: 70px; }
+    section#main_content #editPlaylist h2 {
+      padding: 10px;
+      background-color: #eee;
+      margin-bottom: 0; }
     section#main_content #editPlaylist input, section#main_content #editPlaylist select, section#main_content #editPlaylist textarea {
       display: block;
       border: 1px solid #EEEEEE;
@@ -361,21 +390,23 @@ section#main_content {
       font-weight: bold;
       border-radius: 3px;
       cursor: pointer;
-      float: left; }
+      float: left;
+      margin: 10px 10px 0 10px; }
     section#main_content #editPlaylist #delete_playlist_button {
       display: inline-block;
       float: right;
       cursor: pointer;
       font-size: 1.2em;
-      top: 10px;
-      right: 10px;
-      position: relative; }
+      bottom: 15px;
+      right: 15px;
+      position: absolute; }
   section#main_content ul#selectedPlaylistVideos li {
-    margin: 10px 0;
+    margin: 0px 0;
     padding: 10px 30px 10px 10px;
     height: 50px;
     animation: fadein .3s;
-    position: relative; }
+    position: relative;
+    transition: .1s; }
     section#main_content ul#selectedPlaylistVideos li img {
       height: 100%;
       float: left;
@@ -399,11 +430,11 @@ section#main_content {
       cursor: pointer;
       position: absolute;
       right: 15px;
-      font-size: 1.2em;
+      font-size: 1.4em;
       top: 50%;
       transform: translateY(-50%);
       opacity: 0;
-      color: #888; }
+      color: #b7b7b7; }
       section#main_content ul#selectedPlaylistVideos li .remove_item_button:hover {
         color: black; }
     section#main_content ul#selectedPlaylistVideos li:hover {
@@ -417,40 +448,40 @@ section#main_content {
   margin-left: 60%;
   padding: 20px;
   width: 35%;
-  box-sizing: border-box; }
-  #video_search #searchVideoForm input {
-    padding: 13px 20px;
-    border: 3px solid rgba(0, 0, 0, 0.07);
-    margin-left: 26%;
-    border-radius: 500px;
-    position: relative;
-    box-sizing: border-box;
-    transition: .3s;
-    z-index: 2;
-    box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.3); }
-    #video_search #searchVideoForm input:focus {
+  box-sizing: border-box;
+  position: relative; }
+  #video_search #searchVideoForm {
+    margin-bottom: 15px; }
+    #video_search #searchVideoForm input {
       padding: 13px 40px 13px 20px;
-      margin-left: 22%; }
-      #video_search #searchVideoForm input:focus ~ button {
+      border: 3px solid rgba(0, 0, 0, 0.07);
+      margin-left: 22%;
+      border-radius: 500px;
+      position: relative;
+      box-sizing: border-box;
+      transition: .3s;
+      box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.3); }
+      #video_search #searchVideoForm input:focus ~ button, #video_search #searchVideoForm input:hover ~ button {
         opacity: 1;
-        left: -30px;
-        z-index: 3;
-        box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.5); }
-  #video_search #searchVideoForm button {
-    opacity: 0;
-    position: relative;
-    z-index: 1;
-    left: -55px;
-    border-radius: 50%;
-    border: 3px solid #00000021;
-    padding: 0;
-    width: 50px;
-    height: 47px;
-    transition: .3s; }
+        filter: grayscale(0); }
+    #video_search #searchVideoForm button {
+      position: relative;
+      left: -30px;
+      border-radius: 50%;
+      border: 3px solid #00000021;
+      box-shadow: 0 3px 6px -3px rgba(0, 0, 0, 0.5);
+      padding: 0;
+      width: 50px;
+      height: 47px;
+      transition: .3s;
+      filter: grayscale(1); }
+      #video_search #searchVideoForm button:hover {
+        opacity: 1;
+        filter: grayscale(0); }
   #video_search #searchResults li {
-    margin: 10px 0;
+    margin: 0;
     padding: 10px 30px 10px 10px;
-    height: 50px;
+    height: 80px;
     animation: fadein .3s;
     position: relative; }
     #video_search #searchResults li img {
@@ -462,25 +493,18 @@ section#main_content {
       color: black;
       text-decoration: none;
       font-size: .8em; }
+      #video_search #searchResults li span.channelName {
+        display: block;
+        font-weight: normal;
+        margin-top: 5px;
+        opacity: .6; }
     #video_search #searchResults li .add_item_button {
       cursor: pointer;
       position: absolute;
       right: 15px;
-      font-size: 1.2em;
+      font-size: 1.5em;
       top: 50%;
       transform: translateY(-50%);
       color: #888; }
       #video_search #searchResults li .add_item_button:hover {
         color: black; }
-
-@keyframes spin {
-  100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg); } }
-@keyframes fadein {
-  from {
-    opacity: 0;
-    transform: scale(0.9); }
-  to {
-    opacity: 1;
-    transform: scale(1); } }

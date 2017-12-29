@@ -2,15 +2,11 @@ Client ID : 405209705968-vpb5ad8ans3mlpj6ei85u7uu2bhlb67q.apps.googleusercontent
 Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 
 >>> Idée : Gestionnaire de Playlists
-- Ajouter un élément à la playlist
-- Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités) (? Pas indispensable)
-- Recherche un utilisateur (on garde ?) Si oui, notification si l'utilisateur n'existe pas
-- Load more on scroll
-- Loader pour la recherche de vidéos
+- Recherche un utilisateur : on garde ? Si oui, notification si l'utilisateur n'existe pas
 - Load more panneau central (si longue playlist)
 
+- Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités) (? Pas indispensable)
 - Notification validation / erreur pour chaque fonctionnalité (?)
-- Modal pour voir la vidéo au clic (?)
 
 >>> Idée TOM :
 -		Connexion (popup sur fond blanc)
