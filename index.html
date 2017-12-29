@@ -12,30 +12,29 @@
         <div id="authorize_modal">
             <button id="authorize-button">Se connecter avec Youtube</button>
         </div>
-        <nav id="menu">
-            <span>
-                <button id="signout-button" style="display: none;">
-                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                </button>
-            </span>
-        </nav>
+        
 
         <aside id="left_aside">
+            <nav id="menu">
+                <span>
+                    <button id="signout-button" style="display: none;" title="Déconnexion">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </nav>
             <form id="searchByUsername">
                 <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
                 <button><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
-            <section id="account">
-                <img id="channel_thumbnail" src="img/default_picture.png" alt="Photo de profil" />
-                <h2 id="channel_title"></h2>
-            </section>
-            <div id="playlists">
-                <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
-                <div id="loader">
-                    <i class="fa fa-spinner" aria-hidden="true"></i>
-                </div>
-                <ul id="playlists_list">
-                </ul>
+            <div class="accounts">
+                <section id="myaccount" class="account" title="Mes playlists">
+                    <img class="channel_thumbnail" id="channel_thumbnail" src="img/default_picture.png" alt="Photo de profil" />
+                    <h3 class="channel_title" id="channel_title"></h3>
+                </section>
+                <section id="search_result" class="account hide">
+                    <img class="channel_thumbnail" id="searched_channel_thumbnail" src="img/default_picture.png" alt="Photo de profil" />
+                    <h3 class="channel_title" id="searched_channel_title">Résultat Recherche</h3>
+                </section>
             </div>
             <div id="addPlaylist">
                 <h2>Ajouter une playlist</h2>
@@ -46,10 +45,17 @@
                         <option value="public">Publique</option>
                         <option value="unlisted">Non répertoriée</option>
                     </select>
-                    <button id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i> Créer</button>
+                    <button id="add_playlist"><i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                 </form>
             </div>
-            
+            <div id="playlists">
+                <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
+                <div id="loader">
+                    <i class="fa fa-spinner" aria-hidden="true"></i>
+                </div>
+                <ul id="playlists_list">
+                </ul>
+            </div>
         </aside>
 
         
@@ -85,6 +91,17 @@
             <h3><span id="selectedPlaylistDescription"></span></h3>
 
             <ul id="selectedPlaylistVideos">
+            </ul>
+        </section>
+
+        <section id="video_search">
+            <h2>Ajouter une vidéo</h2>
+            <form id="searchVideoForm">
+                <input type="text" name="query" id="query" placeholder="Rechercher une vidéo">
+                <button><i class='fa fa-search' aria-hidden='true'></i></button>
+            </form>
+
+            <ul id="searchResults">
             </ul>
         </section>
 

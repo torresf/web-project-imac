@@ -2,20 +2,15 @@ Client ID : 405209705968-vpb5ad8ans3mlpj6ei85u7uu2bhlb67q.apps.googleusercontent
 Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 
 >>> Idée : Gestionnaire de Playlists
-- Créer / Supprimer une nouvelle Playlist ("Êtes vous vraiment sûr de vouloir supprimer cette playlist ?")
-- Modifier une playlist déjà existante (Nom, Description, etc...)
-- Ajouter / Supprimer un élément à la playlist
-- Popup validation / erreur pour chaque fonctionnalité
-- Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités)
-- Modal pour voir la vidéo au clic
-- Chargement des playlists en différé (chacun son tour, avec un setTimeout)
-- Ajouter un bouton Paramètres (choix de la couleur etc.)
-- Recherche un utilisateur ? Si oui, notification si l'utilisateur n'existe pas
-- Créer un système de notification 
-- Bouton mon compte, deconnexion en haut à gauche
-- Changer Le format des vignettes
-- modification de la playlist : Ajouter la description + Afficher description en dessous du titre
-- Ajouter bouton "mes playlists"
+- Ajouter un élément à la playlist
+- Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités) (? Pas indispensable)
+- Recherche un utilisateur (on garde ?) Si oui, notification si l'utilisateur n'existe pas
+- Load more on scroll
+- Loader pour la recherche de vidéos
+- Load more panneau central (si longue playlist)
+
+- Notification validation / erreur pour chaque fonctionnalité (?)
+- Modal pour voir la vidéo au clic (?)
 
 >>> Idée TOM :
 -		Connexion (popup sur fond blanc)

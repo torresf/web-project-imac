@@ -11,6 +11,10 @@ var SCOPES = 'https://www.googleapis.com/auth/youtube';
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 var authorize_modal = document.getElementById('authorize_modal');
+var left_aside = document.getElementById('left_aside');
+var main_content = document.getElementById('main_content');
+var video_search = document.getElementById('video_search');
+
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -47,11 +51,16 @@ function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
     authorize_modal.style.display = 'none';
     signoutButton.style.display = 'block';
+    left_aside.classList.remove("filter");
+    main_content.classList.remove("filter");
+    video_search.classList.remove("filter");
     initContent();
-    getChannel();
   } else {
     authorize_modal.style.display = 'block';
     signoutButton.style.display = 'none';
+    left_aside.classList.add("filter");
+    main_content.classList.add("filter");
+    video_search.classList.add("filter");
   }
 }
 
@@ -75,15 +84,26 @@ function handleSignoutClick(event) {
  */
 var addPlaylistBlock = document.getElementById('addPlaylist');
 var delete_playlist_button = document.getElementById('delete_playlist_button');
+
+var my_account = document.getElementById('myaccount');
 var channel_thumbnail = document.getElementById('channel_thumbnail');
 var channel_title = document.getElementById('channel_title');
+var username = document.getElementById("username");
+
+var search_result = document.getElementById('search_result');
+var searched_channel_thumbnail = document.getElementById('searched_channel_thumbnail');
+var searched_channel_title = document.getElementById('searched_channel_title');
+
 var selectedPlaylistTitle = document.getElementById("selectedPlaylistTitle");
 var selectedPlaylistDescription = document.getElementById("selectedPlaylistDescription");
+
 var editPlaylistTitleInput = document.getElementById("edit_playlist_title");
 var editPlaylistDescriptionInput = document.getElementById("edit_playlist_description");
 var editPlaylistTitleSelect = document.getElementById("edit_playlist_privacy_status");
 var editPlaylistButton = document.getElementById("edit_playlist_button");
 var editPlaylistBlock = document.getElementById("editPlaylist");
+
+var load_more_button = document.createElement('button');
 
 var selectedPlaylist; //Objet JS correpondant à la playlist selectionnée
 var myChannel = true; //Permet de savoir si on est sur notre compte ou sur une recherche différente
@@ -92,50 +112,71 @@ var myChannel = true; //Permet de savoir si on est sur notre compte ou sur une r
  * Init Content
  */
 function initContent(){
-  channel_thumbnail.src = "img/default_picture.png";
-  channel_title.innerHTML = "Pas de résultat";
+  getMyChannel();
   edit_playlist_button.onclick = function(){
     toggle(editPlaylistBlock);
+    toggleClass(editPlaylistButton, "clicked");
   }
+  hide(search_result);
+  show(addPlaylistBlock);
+  my_account.classList.remove('mini');
+  show(channel_title);
   document.getElementById("playlists_list").innerHTML = "";
+  defineRequest();
+  username.value = "";
 }
 
-
 /**
- * Get Channel 
+ * Get my Channel
  */
-function getChannel(username) {
+function getMyChannel() {
   var params = {
       'part': 'snippet,contentDetails,statistics',
       'mine': true
-    }
-  if (username) {
-    params = {
-      'part': 'snippet,contentDetails,statistics',
-      'forUsername': username,
-    }
-    myChannel = false;
-  } else {
-    myChannel = true;
   }
-
+  myChannel = true;
   gapi.client.youtube.channels.list(params).then(function(response) {
-    console.log(response);
     var channel = response.result.items[0];
     if (channel) {
       channel_title.innerHTML = channel.snippet.title;
-      channel_thumbnail.src = channel.snippet.thumbnails.default.url;
-      getPlaylists(channel.id);
-
-      if (myChannel == false) {
-        addPlaylistBlock.classList.add("hide");
-        addPlaylistBlock.classList.remove("show");
-      } else {
-        addPlaylistBlock.classList.add("show");
-        addPlaylistBlock.classList.remove("hide");
+      channel_thumbnail.src = channel.snippet.thumbnails.medium.url;
+      channel_thumbnail.onclick = function(){
+        initContent();
       }
+      getPlaylists(channel.id);
     } else {
       initContent();
+      console.log("Aucun utilisateur avec ce pseudo");
+    }
+  });
+}
+
+/**
+ * Get Channel (search by username)
+ */
+function getChannel(username) {
+  params = {
+    'part': 'snippet,contentDetails,statistics',
+    'forUsername': username,
+  }
+  console.log(username, myChannel);
+  myChannel = username ? false : true;
+
+  console.log(username, myChannel);
+
+  gapi.client.youtube.channels.list(params).then(function(response) {
+    var channel = response.result.items[0];
+    if (channel) {
+      searched_channel_title.innerHTML = channel.snippet.title;
+      searched_channel_thumbnail.src = channel.snippet.thumbnails.medium.url;
+      show(search_result);
+      getPlaylists(channel.id);
+      my_account.classList.add('mini');
+      hide(channel_title);
+      hide(addPlaylistBlock);
+    } else {
+      initContent();
+      hide(search_result);
       console.log("Aucun utilisateur avec ce pseudo");
     }
   });
@@ -168,7 +209,6 @@ function getPlaylists(id) {
   gapi.client.youtube.playlists.list(params).then(function(response) {
     loader.style.display = 'none'; //On cache le loader dès qu'on obtient une réponse
     var playlists = response.result.items;
-    console.log("playlist", playlists);
     var time = 0;
     playlists.forEach(function(playlist, index){
       var li = document.createElement('li');
@@ -177,7 +217,7 @@ function getPlaylists(id) {
       content.classList.add("content");
       var numberOfVideos = document.createElement('span');
       var status = playlist.status.privacyStatus;
-      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
+      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.medium.url + '" /> ';
       span.innerHTML = playlist.snippet.title;
       if (playlist.contentDetails.itemCount > 1) {
         numberOfVideos.innerHTML = playlist.contentDetails.itemCount + " vidéos";
@@ -212,7 +252,7 @@ function getPlaylists(id) {
 /**
  * Select Playlist
  */
-function selectPlaylist(clicked_li, playlist_id) { //element correspond au li sur lequel l'utilisateur a cliqué
+function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li sur lequel l'utilisateur a cliqué
   
   //Changement de class pour le li selectionné
   allLi = document.querySelectorAll("#playlists_list li");
@@ -221,10 +261,7 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
   })
   if (clicked_li) {
     clicked_li.classList.add('selected');
-  } else {
-
   }
-  
 
   //Appel API pour récuperer la playlist selectionnée;
   gapi.client.youtube.playlists.list({
@@ -233,7 +270,6 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     'id': playlist_id
   }).then(function(response) {
     selectedPlaylist = response.result.items[0];
-    console.log("selectedPlaylist", selectedPlaylist);
     selectedPlaylistTitle.innerHTML = selectedPlaylist.snippet.title;
     selectedPlaylistDescription.innerHTML = selectedPlaylist.snippet.description;
     editPlaylistTitleInput.value = selectedPlaylist.snippet.title;
@@ -262,18 +298,33 @@ function selectPlaylist(clicked_li, playlist_id) { //element correspond au li su
     list.innerHTML = "";
     var videos = response.result.items;
     var time = 0;
-    videos.forEach(function(video){
+    videos.forEach(function(video, index){
       var a = document.createElement('a');
       var li = document.createElement('li');
+      var img = document.createElement('img');
       var videoTitle = document.createElement('span');
+      var videoNumber = document.createElement('span');
+      var remove_item_button = document.createElement('i');
+
       a.setAttribute('href', "https://www.youtube.com/watch?v=" + video.contentDetails.videoId);
       a.setAttribute('target', "_blank");
-      li.innerHTML = '<img src="'+ video.snippet.thumbnails.default.url + '" /> ';
+      img.setAttribute('src', video.snippet.thumbnails.medium.url);
+      videoNumber.setAttribute('class', 'index');
       videoTitle.innerHTML = video.snippet.title;
-      li.appendChild(videoTitle);
-      a.appendChild(li);
+      videoNumber.innerHTML = index+1+".";
+      remove_item_button.setAttribute('class', 'fa fa-trash remove_item_button');
+      remove_item_button.setAttribute('aria-hidden', 'true');
+      remove_item_button.onclick = function(){
+        removeItem(playlist_id, video.id);
+      }
+      a.appendChild(videoNumber);
+      a.appendChild(img);
+      a.appendChild(videoTitle);
+      li.appendChild(a);
+      li.appendChild(remove_item_button);
+
       setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
-        list.appendChild(a);
+        list.appendChild(li);
       }, time);
       time+= 50;
     });
@@ -296,7 +347,7 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
     resource: {
       snippet: {
         title: title,
-        description: 'Playlist created with the YouTube API'
+        description: 'Playlist créée avec l\'API YouTube'
       },
       status: {
         privacyStatus: privacyStatus
@@ -307,7 +358,6 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
   request.execute(function(response) {
     var result = response.result;
     if (result) {
-      console.log("createPlaylist Result : ", result);
       playlist = result;
       var li = document.createElement('li');
       var span = document.createElement('span');
@@ -315,7 +365,7 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
       content.classList.add("content");
       var numberOfVideos = document.createElement('span');
       var status = playlist.status.privacyStatus;
-      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.default.url + '" /> ';
+      li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.medium.url + '" /> ';
       span.innerHTML = playlist.snippet.title;
       if (playlist.contentDetails.itemCount > 1) {
         numberOfVideos.innerHTML = playlist.contentDetails.itemCount + " vidéos";
@@ -338,7 +388,7 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
       var list = document.getElementById('playlists_list');
       list.insertBefore(li, list.firstChild);
     } else {
-      console.log('Could not create playlist');
+      console.log('La création de la playlist a échoué');
     }
   });
 }
@@ -363,12 +413,12 @@ function editPlaylist(title = "Sans Titre", description, privacyStatus = "privat
     if (result) {
       getPlaylists();
       toggle(editPlaylistBlock);
+      editPlaylistButton.classList.remove("clicked");
     } else {
-      console.log('Could not edit playlist');
+      console.log('La modification de la playlist a échoué');
     }
   });
 }
-
 
 /**
  * Delete Playlist
@@ -381,8 +431,140 @@ function deletePlaylist(playlist_id) {
     setTimeout(function(){
       getPlaylists();
       toggle(editPlaylistBlock);
+      editPlaylistButton.classList.remove("clicked");
       console.log("Playlist supprimée !");
     }, 500);
+  });
+}
+
+/**
+ * Remove Item
+ */
+function removeItem(playlist_id, playlist_item_id) {
+  gapi.client.youtube.playlistItems.delete({
+    id: playlist_item_id,
+    snippet: {
+      "playlistId": playlist_id
+    }
+  }).then(function(response) {
+    getPlaylists();
+    console.log("Item supprimée !");
+  });
+}
+
+/**
+ * Add Item
+ */
+function addItem(playlist_id, video_id) {
+  gapi.client.youtube.playlistItems.insert({
+    part: 'snippet',
+    snippet: {
+      playlistId: playlist_id,
+      resourceId: video_id,
+    }
+  }).then(function(response) {
+    getPlaylists();
+    console.log("Item supprimée !");
+  });
+}
+
+
+/**
+ * Search Video
+ */
+function searchVideo(query) {
+  var list = document.getElementById('searchResults');
+  list.innerHTML = "";
+
+  gapi.client.youtube.search.list({
+    q: query,
+    part: 'snippet',
+    maxResults: '15',
+    type: 'video'
+  }).then(function(response) {
+    console.log("response", response);
+    var videos = response.result.items;
+    var time = 0;
+    videos.forEach(function(video){
+      var li = document.createElement('li');
+      var img = document.createElement('img');
+      var videoTitle = document.createElement('span');
+      var add_item_button = document.createElement('i');
+
+      img.setAttribute('src', video.snippet.thumbnails.medium.url);
+      videoTitle.innerHTML = video.snippet.title;
+
+      add_item_button.setAttribute('class', 'fa fa-plus-circle add_item_button');
+      add_item_button.setAttribute('title', 'Ajouter à la playlist sélectionnée');
+      add_item_button.setAttribute('aria-hidden', 'true');
+      add_item_button.onclick = function(){
+        // console.log(selectedPlaylist.id, video.id);
+        addItem(selectedPlaylist.id, video.id);
+      }
+      li.appendChild(img);
+      li.appendChild(videoTitle);
+      li.appendChild(add_item_button);
+
+      setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
+        list.appendChild(li);
+      }, time);
+      time+= 50;
+    });
+    setTimeout(function(){ //Affiche le bouton "voir plus" à la fin
+      load_more_button.innerHTML = "Voir plus";
+      load_more_button.onclick = function(){
+        loadMore(query, response.result.nextPageToken);
+      }
+      list.appendChild(load_more_button);
+    }, time);
+    
+  });
+}
+
+/**
+ * Search Video
+ */
+function loadMore(query, pageToken) {
+  var list = document.getElementById('searchResults');
+
+  gapi.client.youtube.search.list({
+    q: query,
+    part: 'snippet',
+    maxResults: '10',
+    pageToken: pageToken,
+    type: 'video'
+  }).then(function(response) {
+    console.log("response", response);
+    var videos = response.result.items;
+    var time = 0;
+    videos.forEach(function(video){
+      var li = document.createElement('li');
+      var img = document.createElement('img');
+      var videoTitle = document.createElement('span');
+      var add_item_button = document.createElement('i');
+
+      img.setAttribute('src', video.snippet.thumbnails.medium.url);
+      videoTitle.innerHTML = video.snippet.title;
+
+      add_item_button.setAttribute('class', 'fa fa-plus-circle add_item_button');
+      add_item_button.setAttribute('title', 'Ajouter à la playlist sélectionnée');
+      add_item_button.setAttribute('aria-hidden', 'true');
+      add_item_button.onclick = function(){
+        // console.log(selectedPlaylist.id, video.id);
+        addItem(selectedPlaylist.id, video.id);
+      }
+      li.appendChild(img);
+      li.appendChild(videoTitle);
+      li.appendChild(add_item_button);
+
+      setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
+        list.insertBefore(li, load_more_button);  //On insère les vidéos avant le bouton "Voir plus"
+      }, time);
+      time+= 50;
+      load_more_button.onclick = function(){
+        loadMore(query, response.result.nextPageToken); // On actualise le pageToken
+      }
+    });
   });
 }
 
@@ -399,6 +581,18 @@ function toggle(element){
   } else {
     classList.add('show');
   }
+}
+
+function hide(element){
+  var classList = element.classList;
+  classList.add('hide');
+  classList.remove('show');
+}
+
+function show(element){
+  var classList = element.classList;
+  classList.add('show');
+  classList.remove('hide');
 }
 
 function toggleClass(element, classToToggle){
