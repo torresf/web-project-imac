@@ -2,17 +2,16 @@
 <html>
     <head>
         <title>Youtube</title>
-        <meta charset='utf-8' />
+        <meta charset='utf-8'>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/png" href="img/default_picture.png">
     </head>
     <body>
-        <!--Add buttons to initiate auth sequence and sign out-->
+
         <div id="authorize_modal">
             <button id="authorize-button">Se connecter avec Youtube</button>
         </div>
-        
 
         <aside id="left_aside">
             <nav id="menu">
@@ -51,7 +50,7 @@
             <div id="playlists">
                 <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
                 <div id="playlist_loader" class="loader">
-                    <i class="fa fa-spinner" aria-hidden="true"></i>
+                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
                 </div>
                 <ul id="playlists_list"></ul>
             </div>
@@ -101,7 +100,7 @@
             </form>
 
             <div id="search_video_loader" class="loader">
-                <i class="fa fa-spinner" aria-hidden="true"></i>
+                <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
             </div>
             <ul id="searchResults">
             </ul>

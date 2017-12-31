@@ -113,6 +113,10 @@ a{
 	display: block;
 }
 
+.deleting{
+	filter: grayscale(1) opacity(.5);
+}
+
 #authorize_modal{
 	background-color: rgba(0,0,0,.8);
 	position: fixed;
@@ -168,10 +172,25 @@ input[type="submit"] {
 }
 
 //Animations
-@keyframes spin { 
+@keyframes spin {
+	0% {
+		-webkit-transform: rotate(0deg); 
+		transform: rotate(0deg);
+	}
 	100% { 
-		-webkit-transform: rotate(360deg); 
-		transform: rotate(360deg);
+		-webkit-transform: rotate(359deg); 
+		transform: rotate(359deg);
+	}
+}
+
+@keyframes spinAdd {
+	0% {
+		-webkit-transform: translateY(-50%) rotate(0deg); 
+		transform: translateY(-50%) rotate(0deg);
+	}
+	100% { 
+		-webkit-transform: translateY(-50%)  rotate(359deg); 
+		transform: translateY(-50%)  rotate(359deg);
 	}
 }
 
