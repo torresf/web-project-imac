@@ -21,15 +21,15 @@ h3 {
   color: black; }
 
 ::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
-  background: transparent;
-  /* optional: just make scrollbar invisible */ }
+  width: 7px;
+  background: red; }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 15px; }
   ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4); }
+  ::-webkit-scrollbar-thumb:active {
     background: rgba(0, 0, 0, 0.5); }
 
 #menu {
