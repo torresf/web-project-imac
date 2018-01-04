@@ -1,31 +1,19 @@
-Client ID : 405209705968-vpb5ad8ans3mlpj6ei85u7uu2bhlb67q.apps.googleusercontent.com
-Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
-
 >>> Idée : Gestionnaire de Playlists
-- Recherche un utilisateur : on garde ? Si oui, notification si l'utilisateur n'existe pas
-- Load more panneau central (si longue playlist (supérieure à 25 item))
-- Changer playlists_list en variable globale
+- Recherche un utilisateur : on garde ? Si oui -> notification lorsque l'utilisateur n'existe pas
 - Faire le responsive
- FORMAT TABLETTE AVEC ASIDE + SECTION PLAYLIST. On tej la section vidéo et on met un bouton ajouter qui donne sur l'appartition d'une modal pour ajouter un élément.
-- add item : actualiser image de la playlist
-- remove item, actualiser le numéro devant (faire un forEach sur les li, et actualiser l'index)
-- Bug au selectPlaylist à la création de la playlist
-- Faire le responsive : 50% left_aside 50% main_content, l'ajout de vidéo caché, apparait seulement au clic sur un nouveau bouton
-- Refaire le design du bouton "voir plus"
+	FORMAT TABLETTE AVEC ASIDE + SECTION PLAYLIST. On tej la section vidéo et on met un bouton ajouter qui donne sur l'appartition d'une modal pour rechercher puis ajouter un élément.
+- Refaire le design du bouton "voir plus" (+le centrer)
 - Supprimer tous les console.log inutiles
+- Remplacer la photo de profil par défaut par un chargement (ex: une image qui tourne)
 
-- Valeurs par défaut du main content : rectangles gris à la place de "Titre de la playlist" etc. OU valeurs grisées
+- Valeurs par défaut du main content : rectangles gris à la place de "Titre de la playlist"
 
 - Tous les commentaires en français ?
 - Tri des playlist (date de création, modification, dernière vidéo ajoutée, etc -> voir les possibilités) (? Pas indispensable)
 - Notification validation / erreur pour chaque fonctionnalité (?)
 
-- Ouverture : Drag and drop pour changer la position des vidéos dans la playlist (possible mais très long)
 
->>> Idée TOM :
--		Connexion (popup sur fond blanc)
--		Un champ de recherche de chaine YT
--		3 pages/boutons (Playlists, Info Chaine, Infos Vidéos)
+- Ouverture : Drag and drop pour changer la position des vidéos dans la playlist (possible mais très long)
 
 
 >>> Lancer le serveur
@@ -33,7 +21,3 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 -		PYTHON 3.X : 	py -m http.server 8000
 -							OU
 -						python3 -m http.server 8000
-
-
->>> Bug
--		Ajout de playlist sans titre (valeurs par défaut)
