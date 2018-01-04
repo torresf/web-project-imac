@@ -10,6 +10,9 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - add item : actualiser image de la playlist
 - remove item, actualiser le numéro devant (faire un forEach sur les li, et actualiser l'index)
 - Bug au selectPlaylist à la création de la playlist
+- Faire le responsive : 50% left_aside 50% main_content, l'ajout de vidéo caché, apparait seulement au clic sur un nouveau bouton
+- Refaire le design du bouton "voir plus"
+- Supprimer tous les console.log inutiles
 
 - Valeurs par défaut du main content : rectangles gris à la place de "Titre de la playlist" etc. OU valeurs grisées
 

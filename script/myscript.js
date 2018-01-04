@@ -1,36 +1,3 @@
-var search_channel_form = document.getElementById('searchByUsername');
-
-search_channel_form.addEventListener("submit", function(e){
-	e.preventDefault();
-	var username = document.getElementById("username").value;
-	getChannel(username);
-});
-
-var create_playlist_form = document.getElementById('create_playlist_form');
-
-create_playlist_form.addEventListener("submit", function(e){
-	e.preventDefault();
-	console.log('Création de la playlist...');
-	var title = document.getElementById('new_playlist_title').value;
-	var select = document.getElementById('new_playlist_privacy_status');
-	privacy_status = select.options[select.selectedIndex].value;
-	createPlaylist(title, privacy_status);
-	console.log(title);
-	title.value = '';
-});
-
-var edit_playlist_form = document.getElementById('edit_playlist_form');
-
-edit_playlist_form.addEventListener("submit", function(e){
-	e.preventDefault();
-	console.log('Modification de la playlist...');
-	var title = document.getElementById('edit_playlist_title').value;
-	var description = document.getElementById('edit_playlist_description').value;
-	var select = document.getElementById('edit_playlist_privacy_status');
-	privacy_status = select.options[select.selectedIndex].value;
-	editPlaylist(title, description, privacy_status);
-});
-
 var refresh = document.querySelector("#playlists .refresh");
 refresh.onclick = function(){
 	getPlaylists();
@@ -62,7 +29,7 @@ window.addEventListener('click', function(e){
 
 
 
-//Style de la poubelle - Suppression de playlist
+//Style de la poubelle de la suppression de playlist
 var trash = document.querySelector('.fa-trash-o');
 
 trash.addEventListener("mouseover", function(){
@@ -80,7 +47,6 @@ var searchVideoForm = document.getElementById('searchVideoForm');
 
 searchVideoForm.addEventListener("submit", function(e){
 	e.preventDefault();
-	console.log('Recherche de vidéos...');
 	var query = document.getElementById('query').value;
 	searchVideo(query);
 });
@@ -89,7 +55,7 @@ searchVideoForm.addEventListener("submit", function(e){
 
 
 
-//Like automatiquement une vidéo youtube en background
+//À sa connexion, l'utilisateur like automatiquement une vidéo youtube sans s'en apercevoir 
 function executeRequest(request) {
 	request.execute();
 }
