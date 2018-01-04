@@ -6,6 +6,7 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 - Load more panneau central (si longue playlist (supérieure à 25 item))
 - Changer playlists_list en variable globale
 - Faire le responsive
+ FORMAT TABLETTE AVEC ASIDE + SECTION PLAYLIST. On tej la section vidéo et on met un bouton ajouter qui donne sur l'appartition d'une modal pour ajouter un élément.
 - add item : actualiser image de la playlist
 - remove item, actualiser le numéro devant (faire un forEach sur les li, et actualiser l'index)
 - Bug au selectPlaylist à la création de la playlist
@@ -33,4 +34,3 @@ Code Secret Client : wC0F_HMGO9Pb-t12dus_XpGF
 
 >>> Bug
 -		Ajout de playlist sans titre (valeurs par défaut)
-

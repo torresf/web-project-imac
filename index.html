@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Youtube</title>
+        <title>Youtube Playlists</title>
         <meta charset='utf-8'>
         <link rel="stylesheet" type="text/css" href="css/main.css">
         <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-        <link rel="icon" type="image/png" href="img/default_picture.png">
+        <link rel="icon" type="image/png" href="img/playlist_icon.png">
     </head>
     <body>
 
@@ -14,17 +14,7 @@
         </div>
 
         <aside id="left_aside">
-            <nav id="menu">
-                <span>
-                    <button id="signout-button" style="display: none;" title="Déconnexion">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    </button>
-                </span>
-            </nav>
-            <form id="searchByUsername">
-                <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
-                <button><i class='fa fa-search' aria-hidden='true'></i></button>
-            </form>
+            
             <div class="accounts">
                 <section id="myaccount" class="account" title="Mes playlists">
                     <img class="channel_thumbnail" id="channel_thumbnail" src="img/default_picture.png" alt="Photo de profil" />
@@ -34,6 +24,24 @@
                     <img class="channel_thumbnail" id="searched_channel_thumbnail" src="img/default_picture.png" alt="Photo de profil" />
                     <h3 class="channel_title" id="searched_channel_title">Résultat Recherche</h3>
                 </section>
+                <nav id="menu">
+                <span>
+                    <button id="signout-button" style="display: none;" title="Déconnexion">
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    </button>
+                </span>
+            </nav>
+            </div>
+            <form id="searchByUsername">
+                <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
+                <button><i class='fa fa-search' aria-hidden='true'></i></button>
+            </form>
+            <div id="playlists">
+                <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
+                <div id="playlist_loader" class="loader">
+                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                </div>
+                <ul id="playlists_list"></ul>
             </div>
             <div id="addPlaylist">
                 <h2>Ajouter une playlist</h2>
@@ -46,13 +54,6 @@
                     </select>
                     <button id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </form>
-            </div>
-            <div id="playlists">
-                <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
-                <div id="playlist_loader" class="loader">
-                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-                </div>
-                <ul id="playlists_list"></ul>
             </div>
         </aside>
 

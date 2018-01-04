@@ -25,14 +25,17 @@ h3{
 }
 
 ::-webkit-scrollbar {
-	width: 0px;  /* remove scrollbar space */
-	background: transparent;  /* optional: just make scrollbar invisible */
+	width: 7px;
+	background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
 	background: rgba(0,0,0,.3);
 	border-radius: 15px;
 	&:hover{
+		background: rgba(0,0,0,.4);
+	}
+	&:active{
 		background: rgba(0,0,0,.5);
 	}
 }
@@ -84,7 +87,6 @@ button {
 	border: 0;
 	color: white;
 	font-weight: bold;
-	border-radius: 3px;
 	cursor: pointer;
 	&:hover{
 		background-color: darken($main-color, 15%) !important;
@@ -143,7 +145,6 @@ input, select, textarea{
 	padding: 10px;
 	border: 0;
 	background-color: white;
-	border-radius: 3px;
 	font-family: "Open Sans";
 	box-sizing: border-box;
 }

@@ -21,15 +21,15 @@ h3 {
   color: black; }
 
 ::-webkit-scrollbar {
-  width: 0px;
-  /* remove scrollbar space */
-  background: transparent;
-  /* optional: just make scrollbar invisible */ }
+  width: 7px;
+  background: transparent; }
 
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.3);
   border-radius: 15px; }
   ::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4); }
+  ::-webkit-scrollbar-thumb:active {
     background: rgba(0, 0, 0, 0.5); }
 
 #menu {
@@ -70,7 +70,6 @@ button {
   border: 0;
   color: white;
   font-weight: bold;
-  border-radius: 3px;
   cursor: pointer; }
   button:hover {
     background-color: #da0e0e !important; }
@@ -118,7 +117,6 @@ input, select, textarea {
   padding: 10px;
   border: 0;
   background-color: white;
-  border-radius: 3px;
   font-family: "Open Sans";
   box-sizing: border-box; }
 
