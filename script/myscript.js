@@ -3,16 +3,27 @@ refresh.onclick = function(){
 	getPlaylists();
 }
 
+document.onreadystatechange = function(e)
+{
+    if (document.readyState === 'complete')
+    {
+    	document.getElementById('loader').classList.add('disappear');
+    	setTimeout(myFunction, 500);
+    	function myFunction() {
+		    hide(document.getElementById('loader'));
+		}
+    }
+};
+
 var setSize = function(){
 	if (window.innerWidth<=1110){
 		main_content.classList.remove('fullscreen');
-		hide(addVideoButton);
-		hide(modalAddVideo);
-		hide(backgroundModal);
-		if (!myChannel){
-			hide(addVideoButton);
+		show(closeModalButton);
+		if (!video_search.classList.contains('activated')){
+			hide(video_search);
+			hide(backgroundModal);
+			show(addVideoButton);
 		}
-		else show(addVideoButton);
 		if (window.innerWidth<=850){
 			/*A COMPLETER POUR VERSION MOBILE*/
 		}
@@ -21,12 +32,10 @@ var setSize = function(){
 			main_content.style.height = window.innerHeight + "px";
 			video_search.style.height = window.innerHeight + "px";
 			video_search.style.height = 80/100*window.innerHeight + "px";
-			if (modalAddVideo.classList.contains('show')){
-				hide(modalAddVideo);
-			}
 		}
 	}
 	else{
+		hide(closeModalButton);
 		if (!myChannel){
 			hide(video_search);
 			main_content.classList.add('fullscreen');
@@ -39,7 +48,7 @@ var setSize = function(){
 		video_search.style.height = window.innerHeight + "px";
 		left_aside.classList.remove("filter");
 		main_content.classList.remove("filter");
-		show(modalAddVideo);
+		show(video_search);
 		// if (!myChannel){
 		// 	main_content.classList.add('fullscreen');
 		// }
@@ -48,8 +57,9 @@ var setSize = function(){
 
 addVideoButton.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = modalAddVideo.classList;
+	var modalClassList = video_search.classList;
 	var backgroundModalClassList = backgroundModal.classList;
+	modalClassList.add('activated');
 	modalClassList.remove('hide');
 	modalClassList.add('show');
 	buttonClassList.remove('show');
@@ -63,8 +73,9 @@ addVideoButton.addEventListener('click', function(e){
 
 closeModalButton.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = modalAddVideo.classList;
+	var modalClassList = video_search.classList;
 	var backgroundModalClassList = backgroundModal.classList;
+	modalClassList.remove('activated');
 	modalClassList.remove('show');
 	modalClassList.add('hide');
 	buttonClassList.remove('hide');
@@ -77,8 +88,9 @@ closeModalButton.addEventListener('click', function(e){
 
 backgroundModal.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = modalAddVideo.classList;
+	var modalClassList = video_search.classList;
 	var backgroundModalClassList = backgroundModal.classList;
+	modalClassList.remove('activated');
 	modalClassList.remove('show');
 	modalClassList.add('hide');
 	buttonClassList.remove('hide');

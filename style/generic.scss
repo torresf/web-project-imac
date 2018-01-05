@@ -121,11 +121,11 @@ a{
 }
 
 #authorize_modal{
+	position:absolute;
 	justify-content:center;
 	align-items:center;
 	flex-direction:column;
 	background-color: rgb(255,255,255);
-	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	z-index: 10;

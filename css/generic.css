@@ -96,11 +96,11 @@ a {
   filter: grayscale(1) opacity(0.5); }
 
 #authorize_modal {
+  position: absolute;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   background-color: white;
-  position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: 10;

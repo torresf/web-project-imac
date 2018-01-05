@@ -99,7 +99,6 @@ var editPlaylistButton = document.getElementById("edit_playlist_button");
 var editPlaylistBlock = document.getElementById("editPlaylist");
 
 var addVideoButton = document.getElementById("add_video");
-var modalAddVideo = document.getElementById("video_search");
 var closeModalButton = document.getElementById("closemodal");
 var backgroundModal = document.getElementById("background_modal");
 
