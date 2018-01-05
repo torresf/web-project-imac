@@ -151,7 +151,9 @@ function getMyChannel() {
 				initContent();
 			}
 			getPlaylists(channel.id);
-			show(video_search);
+			if (window.innerWidth>=1110){
+				show(video_search);
+			}
 		} else {
 			initContent();
 			console.log("Aucun utilisateur avec ce pseudo");

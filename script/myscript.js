@@ -17,6 +17,9 @@ var setSize = function(){
 			/*A COMPLETER POUR VERSION MOBILE*/
 		}
 		else{
+			left_aside.style.height = window.innerHeight + "px";
+			main_content.style.height = window.innerHeight + "px";
+			video_search.style.height = window.innerHeight + "px";
 			video_search.style.height = 80/100*window.innerHeight + "px";
 			if (modalAddVideo.classList.contains('show')){
 				hide(modalAddVideo);
