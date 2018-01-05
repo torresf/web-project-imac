@@ -37,6 +37,7 @@ table {
   border-spacing: 0; }
 
 body {
+  height: 100vh;
   font-family: "Open Sans";
   overflow: hidden;
   -ms-user-select: none;
@@ -210,7 +211,7 @@ input[type="submit"] {
   #left_aside #searchByUsername {
     display: inline-flex;
     justify-content: center;
-    padding-bottom: 10px;
+    padding-bottom: 20px;
     width: 100%; }
     #left_aside #searchByUsername #username {
       padding: 10px 15px;
@@ -292,7 +293,6 @@ input[type="submit"] {
           color: #f34141; }
         #left_aside #playlists ul#playlists_list li img {
           display: inline-block;
-          width: 40%;
           float: left;
           height: 100%; }
         #left_aside #playlists ul#playlists_list li div.content {
@@ -311,7 +311,6 @@ input[type="submit"] {
             right: 10px; }
   #left_aside div#addPlaylist {
     position: relative;
-    margin-bottom: 20px;
     padding-bottom: 20px;
     width: 100%;
     box-sizing: border-box;
@@ -363,6 +362,8 @@ section#main_content {
   overflow-x: hidden;
   overflow-y: scroll;
   max-height: 100%; }
+  section#main_content #add_video {
+    display: none; }
   section#main_content #selectedPlaylistDescription {
     position: relative; }
   section#main_content #edit_playlist_button {
@@ -421,6 +422,12 @@ section#main_content {
       bottom: 15px;
       right: 15px;
       position: absolute; }
+  section#main_content ul#selectedPlaylistVideos button {
+    display: block;
+    border: 2px solid #00000021;
+    transition: .3s;
+    width: 50%;
+    margin: auto; }
   section#main_content ul#selectedPlaylistVideos li {
     overflow: hidden;
     margin: 0px 0;
@@ -434,8 +441,7 @@ section#main_content {
       height: 100%;
       float: left;
       margin-left: 5%;
-      margin-right: 5%;
-      width: 30%; }
+      margin-right: 5%; }
     section#main_content ul#selectedPlaylistVideos li span {
       display: inline-block;
       width: 60%;
@@ -476,6 +482,8 @@ section#main_content {
   width: 35%;
   box-sizing: border-box;
   position: relative; }
+  #video_search #closemodal {
+    display: none; }
   #video_search #searchVideoForm {
     display: flex;
     justify-content: center;
@@ -501,6 +509,12 @@ section#main_content {
       #video_search #searchVideoForm button:hover {
         opacity: 1;
         filter: grayscale(0); }
+  #video_search #searchResults button {
+    display: block;
+    border: 2px solid #00000021;
+    transition: .3s;
+    width: 50%;
+    margin: auto; }
   #video_search #searchResults li {
     margin: 0;
     padding: 10px 30px 10px 10px;
@@ -546,3 +560,34 @@ section#main_content {
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%); }
+
+@media screen and (max-width: 1110px) {
+  #left_aside {
+    width: 40%; }
+
+  section#main_content {
+    margin-left: 40%;
+    width: 60%; }
+    section#main_content #add_video {
+      display: block;
+      border: 2px solid #00000021;
+      transition: .3s;
+      width: 50%;
+      margin: auto; }
+
+  #video_search {
+    position: absolute;
+    height: 80vh;
+    width: 90vw;
+    background-color: white;
+    margin-left: 0;
+    left: 5vw;
+    top: 10vh; }
+    #video_search #closemodal {
+      display: block;
+      border: 2px solid #00000021;
+      transition: .3s;
+      position: absolute;
+      right: 10px; }
+      #video_search #closemodal i {
+        transform: rotate(45deg); } }

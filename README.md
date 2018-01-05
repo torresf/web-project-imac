@@ -2,7 +2,6 @@
 - Recherche un utilisateur : on garde ? Si oui -> notification lorsque l'utilisateur n'existe pas
 - Faire le responsive
 	FORMAT TABLETTE AVEC ASIDE + SECTION PLAYLIST. On tej la section vidéo et on met un bouton ajouter qui donne sur l'appartition d'une modal pour rechercher puis ajouter un élément.
-- Refaire le design du bouton "voir plus" (+le centrer)
 - Supprimer tous les console.log inutiles
 - Remplacer la photo de profil par défaut par un chargement (ex: une image qui tourne)
 

@@ -4,10 +4,46 @@ refresh.onclick = function(){
 }
 
 var setSize = function(){
-	left_aside.style.height = window.innerHeight + "px";
-	main_content.style.height = window.innerHeight + "px";
-	video_search.style.height = window.innerHeight + "px";
+	if (window.innerWidth<=1110){
+		if (window.innerWidth<=850){
+		
+		}
+		else{
+			video_search.style.height = 80/100*window.innerHeight + "px";
+			if (modalAddVideo.classList.contains('show')){
+				modalAddVideo.classList.remove('show');
+				modalAddVideo.classList.add('hide');
+			}
+		}
+	}
+	else{
+		left_aside.style.height = window.innerHeight + "px";
+		main_content.style.height = window.innerHeight + "px";
+		video_search.style.height = window.innerHeight + "px";
+		if (modalAddVideo.classList.contains('hide')){
+			modalAddVideo.classList.remove('hide');
+			modalAddVideo.classList.add('show');
+		}
+	}
 }
+
+addVideoButton.addEventListener('click', function(e){
+	var buttonClassList = addVideoButton.classList;
+	var modalClassList = modalAddVideo.classList;
+	modalClassList.remove('hide');
+	modalClassList.add('show');
+	buttonClassList.remove('show');
+	buttonClassList.add('hide');
+});
+
+closeModalButton.addEventListener('click', function(e){
+	var buttonClassList = addVideoButton.classList;
+	var modalClassList = modalAddVideo.classList;
+	modalClassList.remove('show');
+	modalClassList.add('hide');
+	buttonClassList.remove('hide');
+	buttonClassList.add('show');
+});
 
 window.addEventListener('resize', setSize);
 window.onload = function(){	

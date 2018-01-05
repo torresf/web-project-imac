@@ -36,13 +36,6 @@
                 <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
                 <button><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
-            <div id="playlists">
-                <h2>Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
-                <div id="playlist_loader" class="loader">
-                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
-                </div>
-                <ul id="playlists_list"></ul>
-            </div>
             <div id="addPlaylist">
                 <h2>Ajouter une playlist</h2>
                 <form id="create_playlist_form">
@@ -54,6 +47,13 @@
                     </select>
                     <button id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </form>
+            </div>
+            <div id="playlists">
+                <h2>Mes Playlists<i class="fa fa-refresh refresh" aria-hidden="true" title="Rafraîchir"></i></h2>
+                <div id="playlist_loader" class="loader">
+                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                </div>
+                <ul id="playlists_list"></ul>
             </div>
         </aside>
 
@@ -91,9 +91,14 @@
 
             <ul id="selectedPlaylistVideos">
             </ul>
+            <button id="add_video">Ajouter une vidéo</button>
         </section>
 
+<!--         <div id="background-modal"></div>
+ -->
+ 
         <section id="video_search">
+            <button id="closemodal"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>Ajouter une vidéo</h2>
             <form id="searchVideoForm">
                 <input type="text" name="query" id="query" placeholder="Rechercher une vidéo">
