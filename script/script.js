@@ -314,7 +314,6 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 		'part': 'snippet,contentDetails',
 		'playlistId': playlist_id
 	}).then(function(response) {
-		console.log(response);
 		list.innerHTML = "";
 		var videos = response.result.items;
 		var time = 0;
@@ -379,7 +378,6 @@ function loadMorePlaylistItem(playlist_id, pageToken) {
 			playlistId: playlist_id,
 			pageToken: pageToken
 		}).then(function(response) {
-			console.log(response);
 			var videos = response.result.items;
 			var time = 0;
 			videos.forEach(function(video, index){
