@@ -474,6 +474,9 @@ section#main_content {
       section#main_content ul#selectedPlaylistVideos li:hover .remove_item_button {
         opacity: 1; }
 
+section#main_content.fullscreen {
+  width: 70%; }
+
 #video_search {
   overflow-x: hidden;
   overflow-y: scroll;

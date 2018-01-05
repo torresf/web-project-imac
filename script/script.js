@@ -296,6 +296,7 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 	});
 
 	if (myChannel) {
+		main_content.classList.remove('fullscreen');
 		delete_playlist_button.onclick = function(){
 			deletePlaylist(playlist_id);
 		}
@@ -304,6 +305,7 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 	} else {
 		editPlaylistButton.style.display = "none";
 		hide(video_search);
+		main_content.classList.add('fullscreen');
 	}
 	
 	//Appel API pour récupérer les vidéos de la playlist selectionnée;
