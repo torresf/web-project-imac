@@ -10,7 +10,8 @@
     <body>
 
         <div id="authorize_modal">
-            <button id="authorize-button">Se connecter avec Youtube</button>
+            <img id="logo_site" src="img/playlist_title.png" alt="Logo du site" >
+            <button id="authorize-button">Entrer sur l'application</button>
         </div>
 
         <aside id="left_aside">
@@ -34,7 +35,7 @@
             </div>
             <form id="searchByUsername">
                 <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
-                <button><i class='fa fa-search' aria-hidden='true'></i></button>
+                <button title="Rechercher un utilisateur"><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
             <div id="addPlaylist">
                 <h2>Ajouter une playlist</h2>
@@ -45,7 +46,7 @@
                         <option value="public">Publique</option>
                         <option value="unlisted">Non répertoriée</option>
                     </select>
-                    <button id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                    <button title="Ajouter une playlist" id="add_playlist"><i class="fa fa-plus" aria-hidden="true"></i></button>
                 </form>
             </div>
             <div id="playlists">
@@ -59,6 +60,7 @@
 
         
         <section id="main_content">
+            <button  title="Ajouter une vidéo" id="add_video"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>
                 <span id="selectedPlaylistTitle">Titre de la playlist</span>
                 <span id="edit_playlist_button" class="fa-stack fa-lg" title="Modifier la playlist">
@@ -82,7 +84,7 @@
                         <option value="public">Publique</option>
                         <option value="unlisted">Non répertoriée</option>
                     </select>
-                    <button id="edit_playlist">Enregistrer</button>
+                    <button title="Enregistrer" id="edit_playlist">Enregistrer</button>
                 </form>
                 <i class="fa fa-trash-o" id="delete_playlist_button" aria-hidden="true" title="Supprimer la playlist"></i>
             </div>
@@ -91,18 +93,16 @@
 
             <ul id="selectedPlaylistVideos">
             </ul>
-            <button id="add_video">Ajouter une vidéo</button>
         </section>
 
-<!--         <div id="background-modal"></div>
- -->
- 
+        <div id="background_modal"></div>
+
         <section id="video_search">
-            <button id="closemodal"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button title="Fermer la fenêtre" id="closemodal"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>Ajouter une vidéo</h2>
             <form id="searchVideoForm">
                 <input type="text" name="query" id="query" placeholder="Rechercher une vidéo">
-                <button><i class='fa fa-search' aria-hidden='true'></i></button>
+                <button title="Rechercher une vidéo" ><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
 
             <div id="search_video_loader" class="loader">

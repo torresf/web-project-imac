@@ -50,17 +50,11 @@ function initClient() {
 function updateSigninStatus(isSignedIn) {
 	if (isSignedIn) {
 		authorize_modal.style.display = 'none';
-		signoutButton.style.display = 'block';
-		left_aside.classList.remove("filter");
-		main_content.classList.remove("filter");
-		video_search.classList.remove("filter");
+		signoutButton.style.display = 'flex';
 		initContent();
 	} else {
-		authorize_modal.style.display = 'block';
+		authorize_modal.style.display = 'flex';
 		signoutButton.style.display = 'none';
-		left_aside.classList.add("filter");
-		main_content.classList.add("filter");
-		video_search.classList.add("filter");
 	}
 }
 
@@ -107,6 +101,7 @@ var editPlaylistBlock = document.getElementById("editPlaylist");
 var addVideoButton = document.getElementById("add_video");
 var modalAddVideo = document.getElementById("video_search");
 var closeModalButton = document.getElementById("closemodal");
+var backgroundModal = document.getElementById("background_modal");
 
 //Forms
 var create_playlist_form = document.getElementById('create_playlist_form');
@@ -141,6 +136,7 @@ function initContent(){
  * Get my Channel
  */
 function getMyChannel() {
+	show(addVideoButton);
 	var params = {
 			'part': 'snippet,contentDetails,statistics',
 			'mine': true
@@ -155,6 +151,7 @@ function getMyChannel() {
 				initContent();
 			}
 			getPlaylists(channel.id);
+			show(video_search);
 		} else {
 			initContent();
 			console.log("Aucun utilisateur avec ce pseudo");
@@ -174,6 +171,7 @@ search_channel_form.addEventListener("submit", function(e){
  * Get Channel (search by username)
  */
 function getChannel(username) {
+	hide(addVideoButton);
 	params = {
 		'part': 'snippet,contentDetails,statistics',
 		'forUsername': username,
@@ -190,6 +188,7 @@ function getChannel(username) {
 			my_account.classList.add('mini');
 			hide(channel_title);
 			hide(addPlaylistBlock);
+			hide(video_search);
 		} else {
 			initContent();
 			hide(search_result);
@@ -301,11 +300,11 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 			deletePlaylist(playlist_id);
 		}
 		editPlaylistButton.style.display = "inline-block";
-		show(video_search);
 	} else {
 		editPlaylistButton.style.display = "none";
-		hide(video_search);
-		main_content.classList.add('fullscreen');
+		if (window.innerWidth>=1110){
+			main_content.classList.add('fullscreen');
+		}
 	}
 	
 	//Appel API pour récupérer les vidéos de la playlist selectionnée;
@@ -453,7 +452,7 @@ function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Val
 		resource: {
 			snippet: {
 				title: title,
-				description: 'Playlist créée avec l\'API YouTube'
+				description: 'Playlist créée avec l\'API YouTube Playlists'
 			},
 			status: {
 				privacyStatus: privacyStatus

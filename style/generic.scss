@@ -106,7 +106,7 @@ a{
 }
 
 .filter{
-	filter: grayscale(1);
+	filter: grayscale(1) blur(3px);
 }
 
 .hide{
@@ -121,23 +121,24 @@ a{
 }
 
 #authorize_modal{
-	background-color: rgba(0,0,0,.8);
+	justify-content:center;
+	align-items:center;
+	flex-direction:column;
+	background-color: rgb(255,255,255);
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
 	z-index: 10;
 	display: none;
+	img{
+		width:50%;
+	}
 	#authorize-button{
-		border-radius: 50px;
-	    border: 3px solid rgba(0,0,0,.3);
+		margin-top: 100px;
+	    border: 2px solid rgba(0,0,0,.3);
 	    padding: 17px 25px;
 		background-color: #409cf1;
 		background-color: $main-color;
-		position:absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		box-shadow: 0 0 20px 0px rgba(0,0,0,.3);
 	}
 }
 
