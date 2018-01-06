@@ -23,7 +23,7 @@
 	box-sizing: border-box;
 	overflow: scroll;
 	overflow-x: hidden;
-	#searchByUsername{
+	#search_by_username{
 			display: inline-flex;
 			justify-content: center;
 			padding-bottom:20px;
@@ -218,10 +218,7 @@ section#main_content{
 	#add_video{
 		display:none;
 	}
-	#selectedPlaylistTitle{
-		// color: $main-color;
-	}
-	#selectedPlaylistDescription{
+	#selected_playlist_description{
 		position: relative;
 	}
 
@@ -372,7 +369,7 @@ section#main_content.fullscreen{
 	width: 35%;
 	box-sizing: border-box;
     position: relative;
-	#searchVideoForm{
+	#search_video_form{
 		display: flex;
 		justify-content: center;
 		margin-bottom: 15px;
@@ -404,7 +401,7 @@ section#main_content.fullscreen{
 			}
 		}
 	}
-	#searchResults{
+	#videoSearchResults{
 		button{
 			display: block;
 			border: 2px solid #00000021;
@@ -515,7 +512,7 @@ section#main_content.fullscreen{
     left:5vw;
     top:10vh;
   	}
-  	#closemodal{
+  	#close_modal{
 		display:block;
 		border: 2px solid #00000021;
 		transition: .3s;
