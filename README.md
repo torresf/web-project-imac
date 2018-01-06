@@ -5,9 +5,8 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### To Do
-- Pour utilisateur recherché : Cacher le bouton supprimer
+- Recherche d'un utilisateur en grand écran, passe en mode tablette, le bouton ajouter une vidéo s'affiche
 - Commenter le code en français
-- Recherche un utilisateur : Notification lorsque l'utilisateur n'existe pas
 - Faire le responsive (Format tablette : DONE, format portable --> SI j'ai le time)
 
 
