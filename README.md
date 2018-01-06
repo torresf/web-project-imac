@@ -8,9 +8,6 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### To Do
-- Vérifier l'opti de la CSS et le JS
-- Proprifier (oui ça existe) le html, css et js
-- Commenter le code en français
 - Faire le responsive (Format tablette : DONE, format portable --> SI j'ai le time)
 
 
@@ -20,8 +17,8 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### Lancer un serveur en python
-- PYTHON 2.X
+- PYTHON 2
 	`python -m SimpleHTTPServer 8000`
-- PYTHON 3.X
+- PYTHON 3
 	`py -m http.server 8000`
 	`python3 -m http.server 8000`
