@@ -11,10 +11,6 @@ var SCOPES = 'https://www.googleapis.com/auth/youtube';
 var authorizeButton = document.getElementById('authorize-button');
 var signoutButton = document.getElementById('signout-button');
 var authorize_modal = document.getElementById('authorize_modal');
-var left_aside = document.getElementById('left_aside');
-var main_content = document.getElementById('main_content');
-var video_search = document.getElementById('video_search');
-
 
 /**
  *  On load, called to load the auth2 library and API client library.
@@ -74,13 +70,18 @@ function handleSignoutClick(event) {
 
 
 /**
- * Global Variables 
+ * Éléments du DOM et variables globales 
  */
+ //Les trois blocs principaux, de gauche à droite
+var leftAside = document.getElementById('left_aside');
+var mainContent = document.getElementById('main_content');
+var videoSearch = document.getElementById('video_search');
+
 var playlists_list = document.getElementById('playlists_list');
 var addPlaylistBlock = document.getElementById('addPlaylist');
 var delete_playlist_button = document.getElementById('delete_playlist_button');
 
-var myAccount = document.getElementById('my_account');
+var myAccountBlock = document.getElementById('my_account'); //Correspond à la section "Mon compte"
 var channel_thumbnail = document.getElementById('channel_thumbnail');
 var channel_title = document.getElementById('channel_title');
 var username = document.getElementById("username");
@@ -108,11 +109,12 @@ var create_playlist_form = document.getElementById('create_playlist_form');
 var search_channel_form = document.getElementById('searchByUsername');
 var edit_playlist_form = document.getElementById('edit_playlist_form');
 
-var search_load_more_button = document.createElement('button');
-var playlist_item_load_more_button = document.createElement('button');
+var search_load_more_button = document.createElement('button'); //Bouton voir plus dans la recherche
+var playlist_item_load_more_button = document.createElement('button'); //Bouton "voir plus" d'éléments de la playlist sélectionnée
 
 var selectedPlaylist; //Objet JS correpondant à la playlist selectionnée
-var myChannel = true; //Permet de savoir si on est sur notre compte ou sur une recherche différente
+var myChannel = true; //Booléen pour savoir si on est sur notre compte ou sur une recherche différente
+var refresh = document.querySelector("#playlists .refresh"); //Rafraîchit la liste des playlists
 
 /**
  * Init Content
@@ -125,7 +127,7 @@ function initContent(){
 	}
 	hide(search_result);
 	show(addPlaylistBlock);
-	myAccount.classList.remove('mini');
+	myAccountBlock.classList.remove('mini');
 	show(channel_title);
 	playlists_list.innerHTML = "";
 	defineRequest();
@@ -187,7 +189,7 @@ function getChannel(username) {
 			searched_channel_thumbnail.src = channel.snippet.thumbnails.medium.url;
 			show(search_result);
 			getPlaylists(channel.id);
-			myAccount.classList.add('mini');
+			myAccountBlock.classList.add('mini');
 			hide(channel_title);
 			hide(addPlaylistBlock);
 			hide(video_search);
@@ -196,9 +198,10 @@ function getChannel(username) {
 			hide(search_result);
 			notification.innerHTML = "Aucun utilisateur avec ce pseudo";
 			show(notification);
+			notification.style.opacity = 1;
 			setTimeout(function(){
-				hide(notification);
-			}, 3000);
+				fadeOutAndHide(notification);
+			}, 2000);
 			console.log("Aucun utilisateur avec ce pseudo");
 		}
 	});
@@ -302,7 +305,7 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 	});
 
 	if (myChannel) {
-		main_content.classList.remove('fullscreen');
+		mainContent.classList.remove('fullscreen');
 		delete_playlist_button.onclick = function(){
 			deletePlaylist(playlist_id);
 		}
@@ -310,7 +313,7 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 	} else {
 		editPlaylistButton.style.display = "none";
 		if (window.innerWidth>=1110){
-			main_content.classList.add('fullscreen');
+			mainContent.classList.add('fullscreen');
 		}
 	}
 	
@@ -841,6 +844,17 @@ function fadeOutAndRemove(el, callback){
 		if ((el.style.opacity -= .1) < 0) {
 			el.parentNode.removeChild(el); //On supprime l'élément
 			callback();
+		} else {
+			requestAnimationFrame(fade);
+		}
+	})();
+}
+function fadeOutAndHide(el){
+	el.style.opacity = 1;
+
+	(function fade() {
+		if ((el.style.opacity -= .05) < 0) {
+			hide(el); //On cache l'élément
 		} else {
 			requestAnimationFrame(fade);
 		}

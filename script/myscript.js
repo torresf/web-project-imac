@@ -1,6 +1,8 @@
-var refresh = document.querySelector("#playlists .refresh");
 refresh.onclick = function(){
 	getPlaylists();
+}
+notification.onclick = function(){
+	hide(notification);
 }
 
 document.onreadystatechange = function(e)
@@ -17,10 +19,10 @@ document.onreadystatechange = function(e)
 
 var setSize = function(){
 	if (window.innerWidth<=1110){
-		main_content.classList.remove('fullscreen');
+		mainContent.classList.remove('fullscreen');
 		show(closeModalButton);
-		if (!video_search.classList.contains('activated')){
-			hide(video_search);
+		if (!videoSearch.classList.contains('activated')){
+			hide(videoSearch);
 			hide(backgroundModal);
 			show(addVideoButton);
 		}
@@ -28,36 +30,36 @@ var setSize = function(){
 			/*A COMPLETER POUR VERSION MOBILE*/
 		}
 		else{
-			left_aside.style.height = window.innerHeight + "px";
-			main_content.style.height = window.innerHeight + "px";
-			video_search.style.height = window.innerHeight + "px";
-			video_search.style.height = 80/100*window.innerHeight + "px";
+			leftAside.style.height = window.innerHeight + "px";
+			mainContent.style.height = window.innerHeight + "px";
+			videoSearch.style.height = window.innerHeight + "px";
+			videoSearch.style.height = 80/100*window.innerHeight + "px";
 		}
 	}
 	else{
 		hide(closeModalButton);
 		if (!myChannel){
-			hide(video_search);
-			main_content.classList.add('fullscreen');
+			hide(videoSearch);
+			mainContent.classList.add('fullscreen');
 		}
 		if (window.innerWidth<=850){
 			/*A COMPLETER POUR VERSION MOBILE*/
 		}
-		left_aside.style.height = window.innerHeight + "px";
-		main_content.style.height = window.innerHeight + "px";
-		video_search.style.height = window.innerHeight + "px";
-		left_aside.classList.remove("filter");
-		main_content.classList.remove("filter");
-		show(video_search);
+		leftAside.style.height = window.innerHeight + "px";
+		mainContent.style.height = window.innerHeight + "px";
+		videoSearch.style.height = window.innerHeight + "px";
+		leftAside.classList.remove("filter");
+		mainContent.classList.remove("filter");
+		show(videoSearch);
 		// if (!myChannel){
-		// 	main_content.classList.add('fullscreen');
+		// 	mainContent.classList.add('fullscreen');
 		// }
 	}
 }
 
 addVideoButton.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = video_search.classList;
+	var modalClassList = videoSearch.classList;
 	var backgroundModalClassList = backgroundModal.classList;
 	modalClassList.add('activated');
 	modalClassList.remove('hide');
@@ -66,14 +68,14 @@ addVideoButton.addEventListener('click', function(e){
 	buttonClassList.add('hide');
 	backgroundModalClassList.remove('hide');
 	backgroundModalClassList.add('show');
-	left_aside.classList.add("filter");
-	main_content.classList.add("filter");
+	leftAside.classList.add("filter");
+	mainContent.classList.add("filter");
 
 });
 
 closeModalButton.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = video_search.classList;
+	var modalClassList = videoSearch.classList;
 	var backgroundModalClassList = backgroundModal.classList;
 	modalClassList.remove('activated');
 	modalClassList.remove('show');
@@ -82,13 +84,13 @@ closeModalButton.addEventListener('click', function(e){
 	buttonClassList.add('show');
 	backgroundModalClassList.remove('show');
 	backgroundModalClassList.add('hide');
-	left_aside.classList.remove("filter");
-	main_content.classList.remove("filter");
+	leftAside.classList.remove("filter");
+	mainContent.classList.remove("filter");
 });
 
 backgroundModal.addEventListener('click', function(e){
 	var buttonClassList = addVideoButton.classList;
-	var modalClassList = video_search.classList;
+	var modalClassList = videoSearch.classList;
 	var backgroundModalClassList = backgroundModal.classList;
 	modalClassList.remove('activated');
 	modalClassList.remove('show');
@@ -97,8 +99,8 @@ backgroundModal.addEventListener('click', function(e){
 	buttonClassList.add('show');
 	backgroundModalClassList.remove('show');
 	backgroundModalClassList.add('hide');
-	left_aside.classList.remove("filter");
-	main_content.classList.remove("filter");
+	leftAside.classList.remove("filter");
+	mainContent.classList.remove("filter");
 });
 
 window.addEventListener('resize', setSize);
