@@ -8,6 +8,8 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### To Do
+- Vérifier l'opti de la CSS et le JS
+- Proprifier (oui ça existe) le html, css et js
 - Commenter le code en français
 - Faire le responsive (Format tablette : DONE, format portable --> SI j'ai le time)
 

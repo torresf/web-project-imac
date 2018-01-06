@@ -9,7 +9,10 @@ document.onreadystatechange = function(e)
 {
     if (document.readyState === 'complete')
     {
-    	document.getElementById('loader').classList.add('disappear');
+    	setTimeout(disappearing, 200);
+    	function myFunction() {
+		    document.getElementById('loader').classList.add('disappear');
+		}
     	setTimeout(myFunction, 500);
     	function myFunction() {
 		    hide(document.getElementById('loader'));
