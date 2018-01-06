@@ -8,7 +8,6 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### To Do
-- Recherche d'un utilisateur en grand écran, passe en mode tablette, le bouton ajouter une vidéo s'affiche
 - Commenter le code en français
 - Faire le responsive (Format tablette : DONE, format portable --> SI j'ai le time)
 
