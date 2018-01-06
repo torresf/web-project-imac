@@ -8,7 +8,7 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 
 
 ### To Do
-- Faire le responsive (Format tablette : DONE, format portable --> SI j'ai le time)
+- Faire le responsive (Format tablette : DONE, format portable -> Si le temps nous le permet)
 
 
 ### Idées d'amélioration
@@ -20,5 +20,5 @@ Enfin, grâce à cette application, on peut visualiser les playlists publiques d
 - PYTHON 2
 	`python -m SimpleHTTPServer 8000`
 - PYTHON 3
-	`py -m http.server 8000`
+	`py -m http.server 8000` ou 
 	`python3 -m http.server 8000`
