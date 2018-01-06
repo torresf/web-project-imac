@@ -1,7 +1,5 @@
 @import 'colors';
-#loader img{
-	display:none;
-}
+
 #left_aside{
 	background-color: rgba(246, 246, 246, 1);
 	width: 30%;
@@ -471,9 +469,6 @@ section#main_content.fullscreen{
 	width:100vw;
 	height:100vh;
 	background-color:white;
-		.img{
-			width:10%;
-		}
 	}
 	#loader.disappear{
 		opacity:0;

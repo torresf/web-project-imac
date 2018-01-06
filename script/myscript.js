@@ -24,7 +24,9 @@ var setSize = function(){
 		if (!videoSearch.classList.contains('activated')){
 			hide(videoSearch);
 			hide(backgroundModal);
-			show(addVideoButton);
+			if(myChannel){
+				show(addVideoButton);
+			}
 		}
 		if (window.innerWidth<=850){
 			/*A COMPLETER POUR VERSION MOBILE*/

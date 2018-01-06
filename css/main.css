@@ -97,6 +97,11 @@ h3 {
     #menu #signout-button:active {
       background-color: #e1e1e1 !important; }
 
+#notification {
+  margin-bottom: 10px;
+  font-size: 0.8em;
+  text-align: center; }
+
 input:focus, input:active,
 select:focus, select:active,
 textarea:focus, textarea:active {
@@ -200,9 +205,6 @@ input[type="submit"] {
   to {
     opacity: 1;
     transform: scale(1); } }
-#loader img {
-  display: none; }
-
 #left_aside {
   background-color: #f6f6f6;
   width: 30%;
@@ -577,8 +579,6 @@ section#main_content.fullscreen {
     width: 100vw;
     height: 100vh;
     background-color: white; }
-    #loader .img {
-      width: 10%; }
 
   #loader.disappear {
     opacity: 0; }
