@@ -147,7 +147,7 @@ searchVideoForm.addEventListener("submit", function(e){
 
 
 
-//À sa connexion, l'utilisateur like automatiquement une vidéo youtube sans s'en apercevoir 
+//Bonus : À sa connexion, l'utilisateur like automatiquement une vidéo youtube sans s'en apercevoir
 function executeRequest(request) {
 	request.execute();
 }

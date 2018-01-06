@@ -19,7 +19,7 @@
         <aside id="left_aside">
             
             <div class="accounts">
-                <section id="myaccount" class="account" title="Mes playlists">
+                <section id="my_account" class="account" title="Mes playlists">
                     <img class="channel_thumbnail" id="channel_thumbnail" src="img/load.gif" alt="Photo de profil" />
                     <h3 class="channel_title" id="channel_title"></h3>
                 </section>
@@ -28,17 +28,18 @@
                     <h3 class="channel_title" id="searched_channel_title">Résultat Recherche</h3>
                 </section>
                 <nav id="menu">
-                <span>
-                    <button id="signout-button" style="display: none;" title="Déconnexion">
-                        <i class="fa fa-sign-out" aria-hidden="true"></i>
-                    </button>
-                </span>
-            </nav>
+                    <span>
+                        <button id="signout-button" style="display: none;" title="Déconnexion">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </button>
+                    </span>
+                </nav>
             </div>
             <form id="searchByUsername">
                 <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
                 <button title="Rechercher un utilisateur"><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
+            <div id="notification"></div>
             <div id="addPlaylist">
                 <h2>Ajouter une playlist</h2>
                 <form id="create_playlist_form">

@@ -80,10 +80,11 @@ var playlists_list = document.getElementById('playlists_list');
 var addPlaylistBlock = document.getElementById('addPlaylist');
 var delete_playlist_button = document.getElementById('delete_playlist_button');
 
-var my_account = document.getElementById('myaccount');
+var myAccount = document.getElementById('my_account');
 var channel_thumbnail = document.getElementById('channel_thumbnail');
 var channel_title = document.getElementById('channel_title');
 var username = document.getElementById("username");
+var notification = document.getElementById('notification');
 
 var search_result = document.getElementById('search_result');
 var searched_channel_thumbnail = document.getElementById('searched_channel_thumbnail');
@@ -124,7 +125,7 @@ function initContent(){
 	}
 	hide(search_result);
 	show(addPlaylistBlock);
-	my_account.classList.remove('mini');
+	myAccount.classList.remove('mini');
 	show(channel_title);
 	playlists_list.innerHTML = "";
 	defineRequest();
@@ -186,13 +187,18 @@ function getChannel(username) {
 			searched_channel_thumbnail.src = channel.snippet.thumbnails.medium.url;
 			show(search_result);
 			getPlaylists(channel.id);
-			my_account.classList.add('mini');
+			myAccount.classList.add('mini');
 			hide(channel_title);
 			hide(addPlaylistBlock);
 			hide(video_search);
 		} else {
 			initContent();
 			hide(search_result);
+			notification.innerHTML = "Aucun utilisateur avec ce pseudo";
+			show(notification);
+			setTimeout(function(){
+				hide(notification);
+			}, 3000);
 			console.log("Aucun utilisateur avec ce pseudo");
 		}
 	});
@@ -333,19 +339,22 @@ function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li
 			videoNumber.setAttribute('class', 'index');
 			videoTitle.innerHTML = video.snippet.title;
 			videoNumber.innerHTML = index+1+".";
-
-			remove_item_button.setAttribute('class', 'fa fa-trash remove_item_button');
-			remove_item_button.setAttribute('title', 'Supprimer de la playlist');
-			remove_item_button.setAttribute('aria-hidden', 'true');
-			remove_item_button.onclick = function(){
-				removeItem(playlist_id, video.id, li);
+			if (myChannel) {
+				remove_item_button.setAttribute('class', 'fa fa-trash remove_item_button');
+				remove_item_button.setAttribute('title', 'Supprimer de la playlist');
+				remove_item_button.setAttribute('aria-hidden', 'true');
+				remove_item_button.onclick = function(){
+					removeItem(playlist_id, video.id, li);
+				}
 			}
 
 			a.appendChild(videoNumber);
 			a.appendChild(img);
 			a.appendChild(videoTitle);
 			li.appendChild(a);
-			li.appendChild(remove_item_button);
+			if (myChannel) {
+				li.appendChild(remove_item_button);
+			}
 
 			setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
 				list.appendChild(li);
@@ -397,18 +406,22 @@ function loadMorePlaylistItem(playlist_id, pageToken) {
 				videoTitle.innerHTML = video.snippet.title;
 				videoNumber.innerHTML = nb_videos_in_playlist + index + 1 + ".";
 
-				remove_item_button.setAttribute('class', 'fa fa-trash remove_item_button');
-				remove_item_button.setAttribute('title', 'Supprimer de la playlist');
-				remove_item_button.setAttribute('aria-hidden', 'true');
-				remove_item_button.onclick = function(){
-					removeItem(playlist_id, video.id, li);
+				if (myChannel) {
+					remove_item_button.setAttribute('class', 'fa fa-trash remove_item_button');
+					remove_item_button.setAttribute('title', 'Supprimer de la playlist');
+					remove_item_button.setAttribute('aria-hidden', 'true');
+					remove_item_button.onclick = function(){
+						removeItem(playlist_id, video.id, li);
+					}
 				}
 
 				a.appendChild(videoNumber);
 				a.appendChild(img);
 				a.appendChild(videoTitle);
 				li.appendChild(a);
-				li.appendChild(remove_item_button);
+				if (myChannel) {
+					li.appendChild(remove_item_button);
+				}
 
 				setTimeout(function(){    //Permet un affichage progressif des éléments de la liste
 					list.insertBefore(li, playlist_item_load_more_button);  //On insère les vidéos avant le bouton "Voir plus"
