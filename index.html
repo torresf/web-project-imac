@@ -8,20 +8,27 @@
         <link rel="icon" type="image/png" href="img/playlist_icon.png">
     </head>
     <body>
+
+        <!-- MODALE DE CONNEXION LORSQUE L'ON ARRIVE SUR L'APPLICATION SANS ÊTRE CONNECTE -->
+
         <div id="authorize_modal">
             <img id="logo_site" src="img/playlist_title.png" alt="Logo du site" >
             <button id="authorize-button">Entrer sur l'application</button>
         </div>
-        <div id="loader"><p>loading...</p></div>
+
+        <!-- LOADER PERMETTANT A LA PAGE DE CHARGER TOTALEMENT EN INDIQUANT A L'UTILISATEUR QUE LA PAGE CHARGE -->
+
+        <div id="loader"><p>Chargement...</p></div>
+
+        <!-- PARTIE GAUCHE DU SITE CONTENANT LE PROFIL DIVISE EN 4 BLOCS PRINCIPAUX : LA PARTIE "COMPTE", LA PARTIE RECHERCHE d'UTILISATEUR, LA PARTIE AJOUTER PLAYLIST ET LA PARTIE PLAYLIST -->
 
         <aside id="left_aside">
-            
             <div class="accounts">
                 <section id="my_account" class="account">
                     <img class="channel_thumbnail" id="channel_thumbnail" src="img/load.gif" alt="Photo de profil" title="Mes playlists"/>
                     <h3 class="channel_title" id="channel_title"></h3>
                 </section>
-                <section id="user_search_result" class="account hide">
+                <section id="search_result" class="account hide">
                     <img class="channel_thumbnail" id="searched_channel_thumbnail" src="img/load.gif" alt="Photo de profil" />
                     <h3 class="channel_title" id="searched_channel_title">Résultat Recherche</h3>
                 </section>
@@ -33,7 +40,7 @@
                     </span>
                 </nav>
             </div>
-            <form id="search_by_username">
+            <form id="searchByUsername">
                 <input type="text" name="username" id="username" placeholder="Rechercher un utilisateur">
                 <button title="Rechercher un utilisateur"><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
@@ -59,15 +66,17 @@
             </div>
         </aside>
 
+        <!-- SECTION PRINCIPALE DE L'APPLICATION AVEC UN BLOC D'INFOS SUR LA PLAYLIST PUIS UNE DIV POUR L'EDITER ET ENFIN LA LISTE DES VIDEOS -->
         
+
         <section id="main_content">
             <button  title="Ajouter une vidéo" id="add_video"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>
-                <span id="selected_playlist_title">Titre de la playlist</span>
+                <span id="selectedPlaylistTitle">Titre de la playlist</span>
                 <span id="edit_playlist_button" class="fa-stack fa-lg" title="Modifier la playlist">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" focusable="false" class="fa-stack-1x style-scope yt-icon" style="width: 50%; height: 50%;">
-                        <g class="style-scope yt-icon">
+                        <g viewBox="0 0 24 24" class="style-scope yt-icon">
                             <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" class="style-scope yt-icon" fill="#6e6e6e" ></path>
                             <path d="M0 0h24v24H0z" fill="none" class="style-scope yt-icon"></path>
                         </g>
@@ -90,18 +99,22 @@
                 <i class="fa fa-trash-o" id="delete_playlist_button" aria-hidden="true" title="Supprimer la playlist"></i>
             </div>
 
-            <h3 id="selected_playlist_description"></h3>
+            <h3><span id="selectedPlaylistDescription"></span></h3>
 
             <ul id="selectedPlaylistVideos">
             </ul>
         </section>
 
+        <!-- FOND DE LA MODALE DE RECHERCHE DE VIDEO LORS DU MODE TABLETTE QUI SERT DE FILTRE ET DE ZONE CLIQUABLE POUR EN SORTIR  -->
+
         <div id="background_modal"></div>
 
+        <!-- SECTION RECHERCHE DE VIDEO QUI PERMET DE RECHERCHER UNE VIDEO POUR L'AJOUTER DANS LA PLAYLIST SELECTIONNEE. ELLE APPARAIT SUR LA DROITE DU SITE EN VERSION PC ET EN MODALE POUR LA VERSION TABLETTE -->
+
         <section id="video_search">
-            <button title="Fermer la fenêtre" id="close_modal"><i class="fa fa-plus" aria-hidden="true"></i></button>
+            <button title="Fermer la fenêtre" id="closemodal"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>Ajouter une vidéo</h2>
-            <form id="search_video_form">
+            <form id="searchVideoForm">
                 <input type="text" name="query" id="query" placeholder="Rechercher une vidéo">
                 <button title="Rechercher une vidéo" ><i class='fa fa-search' aria-hidden='true'></i></button>
             </form>
@@ -109,12 +122,14 @@
             <div id="search_video_loader" class="loader">
                 <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
             </div>
-            <ul id="videoSearchResults">
+            <ul id="searchResults">
             </ul>
         </section>
 
+        <!-- EXECUTION DES DIFFERENTS SCRIPTS -->
+
         <script type="text/javascript" src="script/script.js"></script>
-        <script type="text/javascript" src="script/responsive.js"></script>
+        <script type="text/javascript" src="script/myscript.js"></script>
         <script async defer src="https://apis.google.com/js/api.js"
                 onload="this.onload=function(){};handleClientLoad()"
                 onreadystatechange="if (this.readyState === 'complete') this.onload()">

@@ -1,6 +1,8 @@
 @import 'colors';
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700,900');
 
+// PAGE DE STYLE GENERALE AVEC LES ELEMENTS PRINCIPAUX A REUTILISER SI L'ON CREER PLUS DE PAGES SUR LE SITE
+
 body{
 	height:100vh;
 	font-family: "Open Sans";
@@ -95,7 +97,6 @@ textarea:focus, textarea:active
 	outline: none;
 }
 
-
 button {
 	padding: 10px 15px;
 	background-color: $main-color;
@@ -149,8 +150,8 @@ a{
 	}
 	#authorize-button{
 		margin-top: 100px;
-		border: 2px solid rgba(0,0,0,.3);
-		padding: 17px 25px;
+	    border: 2px solid rgba(0,0,0,.3);
+	    padding: 17px 25px;
 		background-color: #409cf1;
 		background-color: $main-color;
 	}

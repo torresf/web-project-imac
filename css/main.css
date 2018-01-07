@@ -236,12 +236,31 @@ input[type="submit"] {
   box-sizing: border-box;
   overflow: scroll;
   overflow-x: hidden; }
-  #left_aside #search_by_username {
+  #left_aside .accounts .account {
+    padding: 20px 10px 10px 10px;
+    text-align: center; }
+    #left_aside .accounts .account #channel_thumbnail {
+      transition: .3s; }
+    #left_aside .accounts .account #channel_thumbnail:hover {
+      cursor: pointer;
+      transform: scale(1.1); }
+    #left_aside .accounts .account .channel_thumbnail {
+      border-radius: 50%;
+      height: 88px;
+      transition: 0.3s; }
+    #left_aside .accounts .account .channel_title {
+      color: #222;
+      font-weight: bold;
+      font-size: .8em;
+      margin-top: 10px; }
+    #left_aside .accounts .account#myaccount.mini .channel_thumbnail {
+      height: 45px; }
+  #left_aside #searchByUsername {
     display: inline-flex;
     justify-content: center;
     padding-bottom: 20px;
     width: 100%; }
-    #left_aside #search_by_username #username {
+    #left_aside #searchByUsername #username {
       padding: 10px 15px;
       width: 70%;
       border: 2px solid rgba(0, 0, 0, 0.07);
@@ -250,9 +269,9 @@ input[type="submit"] {
       transition: .3s;
       z-index: 2;
       height: 47px; }
-      #left_aside #search_by_username #username:focus {
+      #left_aside #searchByUsername #username:focus {
         width: 85%; }
-    #left_aside #search_by_username button {
+    #left_aside #searchByUsername button {
       opacity: 1;
       position: relative;
       z-index: 1;
@@ -261,29 +280,48 @@ input[type="submit"] {
       width: 50px;
       height: 47px;
       transition: .3s; }
-  #left_aside .accounts {
-    /* display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start; */ }
-    #left_aside .accounts .account {
-      padding: 20px 10px 10px 10px;
-      text-align: center; }
-      #left_aside .accounts .account #channel_thumbnail {
-        transition: .3s; }
-      #left_aside .accounts .account #channel_thumbnail:hover {
-        cursor: pointer;
-        transform: scale(1.1); }
-      #left_aside .accounts .account .channel_thumbnail {
-        border-radius: 50%;
-        height: 88px;
-        transition: 0.3s; }
-      #left_aside .accounts .account .channel_title {
-        color: #222;
-        font-weight: bold;
-        font-size: .8em;
-        margin-top: 10px; }
-      #left_aside .accounts .account#myaccount.mini .channel_thumbnail {
-        height: 45px; }
+  #left_aside div#addPlaylist {
+    position: relative;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f6f6f6; }
+    #left_aside div#addPlaylist h2 {
+      display: inline-flex;
+      margin-bottom: 20px; }
+    #left_aside div#addPlaylist input {
+      border: 2px solid rgba(0, 0, 0, 0.07);
+      height: 50px;
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      background-color: white;
+      margin-bottom: 10px; }
+    #left_aside div#addPlaylist select {
+      border: 2px solid rgba(0, 0, 0, 0.07);
+      height: 50px;
+      display: inline-block;
+      width: 75%;
+      padding: 10px;
+      background-color: white; }
+    #left_aside div#addPlaylist button {
+      float: right;
+      opacity: 1;
+      position: relative;
+      border: 2px solid #00000021;
+      background-color: #f34141;
+      color: white;
+      cursor: pointer;
+      transition: .3s;
+      position: relative;
+      height: 50px;
+      width: 50px; }
+      #left_aside div#addPlaylist button i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.3em; }
   #left_aside #playlists {
     position: relative; }
     #left_aside #playlists .refresh {
@@ -337,48 +375,6 @@ input[type="submit"] {
             position: absolute;
             top: 10px;
             right: 10px; }
-  #left_aside div#addPlaylist {
-    position: relative;
-    padding-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f6f6f6; }
-    #left_aside div#addPlaylist h2 {
-      display: inline-flex;
-      margin-bottom: 20px; }
-    #left_aside div#addPlaylist input {
-      border: 2px solid rgba(0, 0, 0, 0.07);
-      height: 50px;
-      display: inline-block;
-      width: 100%;
-      padding: 10px;
-      background-color: white;
-      margin-bottom: 10px; }
-    #left_aside div#addPlaylist select {
-      border: 2px solid rgba(0, 0, 0, 0.07);
-      height: 50px;
-      display: inline-block;
-      width: 75%;
-      padding: 10px;
-      background-color: white; }
-    #left_aside div#addPlaylist button {
-      float: right;
-      opacity: 1;
-      position: relative;
-      border: 2px solid #00000021;
-      background-color: #f34141;
-      color: white;
-      cursor: pointer;
-      transition: .3s;
-      position: relative;
-      height: 50px;
-      width: 50px; }
-      #left_aside div#addPlaylist button i {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.3em; }
 
 section#main_content {
   margin-left: 30%;
@@ -392,7 +388,7 @@ section#main_content {
   max-height: 100%; }
   section#main_content #add_video {
     display: none; }
-  section#main_content #selected_playlist_description {
+  section#main_content #selectedPlaylistDescription {
     position: relative; }
   section#main_content #edit_playlist_button {
     position: relative;
@@ -513,21 +509,21 @@ section#main_content.fullscreen {
   width: 35%;
   box-sizing: border-box;
   position: relative; }
-  #video_search #search_video_form {
+  #video_search #searchVideoForm {
     display: flex;
     justify-content: center;
     margin-bottom: 15px; }
-    #video_search #search_video_form input {
+    #video_search #searchVideoForm input {
       padding: 13px 40px 13px 20px;
       border: 2px solid rgba(0, 0, 0, 0.07);
       position: relative;
       box-sizing: border-box;
       transition: .3s;
       height: 47px; }
-      #video_search #search_video_form input:focus ~ button, #video_search #search_video_form input:hover ~ button {
+      #video_search #searchVideoForm input:focus ~ button, #video_search #searchVideoForm input:hover ~ button {
         opacity: 1;
         filter: grayscale(0); }
-    #video_search #search_video_form button {
+    #video_search #searchVideoForm button {
       position: relative;
       border: 2px solid #00000021;
       padding: 0;
@@ -535,36 +531,36 @@ section#main_content.fullscreen {
       height: 47px;
       transition: .3s;
       filter: grayscale(1); }
-      #video_search #search_video_form button:hover {
+      #video_search #searchVideoForm button:hover {
         opacity: 1;
         filter: grayscale(0); }
-  #video_search #videoSearchResults button {
+  #video_search #searchResults button {
     display: block;
     border: 2px solid #00000021;
     transition: .3s;
     width: 50%;
     margin: auto; }
-  #video_search #videoSearchResults li {
+  #video_search #searchResults li {
     margin: 0;
     padding: 10px 30px 10px 10px;
     height: 80px;
     animation: fadein .3s;
     position: relative; }
-    #video_search #videoSearchResults li img {
+    #video_search #searchResults li img {
       height: 100%;
       float: left;
       margin-right: 10px; }
-    #video_search #videoSearchResults li span {
+    #video_search #searchResults li span {
       font-weight: bold;
       color: black;
       text-decoration: none;
       font-size: .8em; }
-      #video_search #videoSearchResults li span.channelName {
+      #video_search #searchResults li span.channelName {
         display: block;
         font-weight: normal;
         margin-top: 5px;
         opacity: .6; }
-    #video_search #videoSearchResults li .add_item_button {
+    #video_search #searchResults li .add_item_button {
       cursor: pointer;
       position: absolute;
       right: 15px;
@@ -572,13 +568,13 @@ section#main_content.fullscreen {
       transform: translateY(-50%) rotate(0deg);
       color: #888;
       z-index: 1; }
-      #video_search #videoSearchResults li .add_item_button:hover {
+      #video_search #searchResults li .add_item_button:hover {
         color: black; }
-        #video_search #videoSearchResults li .add_item_button:hover:after {
+        #video_search #searchResults li .add_item_button:hover:after {
           background-color: #eee; }
-      #video_search #videoSearchResults li .add_item_button:active:after {
+      #video_search #searchResults li .add_item_button:active:after {
         background-color: #ddd; }
-      #video_search #videoSearchResults li .add_item_button:after {
+      #video_search #searchResults li .add_item_button:after {
         z-index: -1;
         content: "";
         position: absolute;
@@ -631,13 +627,13 @@ section#main_content.fullscreen {
     left: 5vw;
     top: 10vh; }
 
-  #close_modal {
+  #closemodal {
     display: block;
     border: 2px solid #00000021;
     transition: .3s;
     position: absolute;
     right: 10px; }
-    #close_modal i {
+    #closemodal i {
       transform: rotate(45deg); } }
 @media screen and (max-width: 850px) {
   /*A COMPLETER POUR VERSION MOBILE*/ }
