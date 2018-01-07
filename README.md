@@ -16,7 +16,7 @@ Pour le JS, nous avons séparé les fichiers (pour simplifier la correction) ave
 ### Idées d'amélioration
 - Développer un Drag & Drop pour modifier l'ordre des vidéos dans une playlist
 - Autocomplétion sur le nom d'utilisateur et la recherche de vidéo
-- Faire le responsive (Format tablette : DONE, format portable -> Si le temps nous le permet sinon --> Idées d'amélioration)
+- Rendre l'application responsive pour mobile (actuellement seulement pour tablette)
 
 ### Lancer un serveur en python
 - AVEC PYTHON 2
