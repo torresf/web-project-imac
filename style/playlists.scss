@@ -12,9 +12,13 @@
 	transition:0.5s;
 	justify-content:center;
 	align-items:center;
+	flex-direction:column;
 	width:100vw;
 	height:100vh;
 	background-color:white;
+	img{
+		width:20%;
+	}
 }
 #loader.disappear{
 	opacity:0;
