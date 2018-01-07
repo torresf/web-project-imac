@@ -236,6 +236,25 @@ input[type="submit"] {
   box-sizing: border-box;
   overflow: scroll;
   overflow-x: hidden; }
+  #left_aside .accounts .account {
+    padding: 20px 10px 10px 10px;
+    text-align: center; }
+    #left_aside .accounts .account #channel_thumbnail {
+      transition: .3s; }
+    #left_aside .accounts .account #channel_thumbnail:hover {
+      cursor: pointer;
+      transform: scale(1.1); }
+    #left_aside .accounts .account .channel_thumbnail {
+      border-radius: 50%;
+      height: 88px;
+      transition: 0.3s; }
+    #left_aside .accounts .account .channel_title {
+      color: #222;
+      font-weight: bold;
+      font-size: .8em;
+      margin-top: 10px; }
+    #left_aside .accounts .account#myaccount.mini .channel_thumbnail {
+      height: 45px; }
   #left_aside #searchByUsername {
     display: inline-flex;
     justify-content: center;
@@ -261,29 +280,48 @@ input[type="submit"] {
       width: 50px;
       height: 47px;
       transition: .3s; }
-  #left_aside .accounts {
-    /* display: inline-flex;
-    flex-direction: column;
-    justify-content: flex-start; */ }
-    #left_aside .accounts .account {
-      padding: 20px 10px 10px 10px;
-      text-align: center; }
-      #left_aside .accounts .account #channel_thumbnail {
-        transition: .3s; }
-      #left_aside .accounts .account #channel_thumbnail:hover {
-        cursor: pointer;
-        transform: scale(1.1); }
-      #left_aside .accounts .account .channel_thumbnail {
-        border-radius: 50%;
-        height: 88px;
-        transition: 0.3s; }
-      #left_aside .accounts .account .channel_title {
-        color: #222;
-        font-weight: bold;
-        font-size: .8em;
-        margin-top: 10px; }
-      #left_aside .accounts .account#myaccount.mini .channel_thumbnail {
-        height: 45px; }
+  #left_aside div#addPlaylist {
+    position: relative;
+    padding-bottom: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f6f6f6; }
+    #left_aside div#addPlaylist h2 {
+      display: inline-flex;
+      margin-bottom: 20px; }
+    #left_aside div#addPlaylist input {
+      border: 2px solid rgba(0, 0, 0, 0.07);
+      height: 50px;
+      display: inline-block;
+      width: 100%;
+      padding: 10px;
+      background-color: white;
+      margin-bottom: 10px; }
+    #left_aside div#addPlaylist select {
+      border: 2px solid rgba(0, 0, 0, 0.07);
+      height: 50px;
+      display: inline-block;
+      width: 75%;
+      padding: 10px;
+      background-color: white; }
+    #left_aside div#addPlaylist button {
+      float: right;
+      opacity: 1;
+      position: relative;
+      border: 2px solid #00000021;
+      background-color: #f34141;
+      color: white;
+      cursor: pointer;
+      transition: .3s;
+      position: relative;
+      height: 50px;
+      width: 50px; }
+      #left_aside div#addPlaylist button i {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 1.3em; }
   #left_aside #playlists {
     position: relative; }
     #left_aside #playlists .refresh {
@@ -337,48 +375,6 @@ input[type="submit"] {
             position: absolute;
             top: 10px;
             right: 10px; }
-  #left_aside div#addPlaylist {
-    position: relative;
-    padding-bottom: 20px;
-    width: 100%;
-    box-sizing: border-box;
-    background-color: #f6f6f6; }
-    #left_aside div#addPlaylist h2 {
-      display: inline-flex;
-      margin-bottom: 20px; }
-    #left_aside div#addPlaylist input {
-      border: 2px solid rgba(0, 0, 0, 0.07);
-      height: 50px;
-      display: inline-block;
-      width: 100%;
-      padding: 10px;
-      background-color: white;
-      margin-bottom: 10px; }
-    #left_aside div#addPlaylist select {
-      border: 2px solid rgba(0, 0, 0, 0.07);
-      height: 50px;
-      display: inline-block;
-      width: 75%;
-      padding: 10px;
-      background-color: white; }
-    #left_aside div#addPlaylist button {
-      float: right;
-      opacity: 1;
-      position: relative;
-      border: 2px solid #00000021;
-      background-color: #f34141;
-      color: white;
-      cursor: pointer;
-      transition: .3s;
-      position: relative;
-      height: 50px;
-      width: 50px; }
-      #left_aside div#addPlaylist button i {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        font-size: 1.3em; }
 
 section#main_content {
   margin-left: 30%;
