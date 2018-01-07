@@ -12,7 +12,7 @@ document.onreadystatechange = function(e) {
     }
 };
 
-// Execute setZize() AU CHARGEMENT INITIAL + A CHAQUE REDIMENSIONNEMENT
+// Execute setSize() AU CHARGEMENT INITIAL + A CHAQUE REDIMENSIONNEMENT
 window.addEventListener('resize', setSize);
 window.onload = function() {	
 	setSize();
@@ -36,7 +36,7 @@ function setSize() {
 			/*A COMPLETER POUR VERSION MOBILE*/
 		} 
 		// VERSION TABLETTE
-		else{
+		else {
 			leftAside.style.height = window.innerHeight + "px";
 			mainContent.style.height = window.innerHeight + "px";
 			videoSearch.style.height = window.innerHeight + "px";
@@ -74,6 +74,7 @@ addVideoButton.addEventListener('click', function(e) {
 closeModalButton.addEventListener('click', closeModal); //En cliquant sur le bouton "X"
 backgroundModal.addEventListener('click', closeModal); //En cliquant en dehors de la modal
 
+//Fonction de fermeture de la modal
 function closeModal() {
 	var modalClassList = videoSearch.classList;
 	modalClassList.remove('activated');

@@ -185,6 +185,8 @@ function getChannel(username) {
 		'part': 'snippet,contentDetails,statistics',
 		'forUsername': username,
 	}
+
+	//Si un "username" est passé en paramètre, on sort de notre chaîne (myChannel = false), sinon myChannel = true
 	myChannel = username ? false : true;
 
 	gapi.client.youtube.channels.list(params).then(function(response) {
@@ -249,11 +251,8 @@ function getPlaylists(id) {
 			var status = playlist.status.privacyStatus;
 			li.innerHTML = '<img src="'+ playlist.snippet.thumbnails.medium.url + '" /> ';
 			span.innerHTML = playlist.snippet.title;
-			if (playlist.contentDetails.itemCount > 1) {
-				numberOfVideos.innerHTML = "<span class='number'>" + playlist.contentDetails.itemCount + "</span> vidéos";
-			} else {
-				numberOfVideos.innerHTML = "<span class='number'>" + playlist.contentDetails.itemCount + "</span> vidéo";
-			}
+
+			numberOfVideos.innerHTML = "<span class='number'>" + playlist.contentDetails.itemCount + "</span> "+ (playlist.contentDetails.itemCount > 1 ? "vidéos" : "vidéo");
 			numberOfVideos.classList.add("numberOfVideos");
 			content.appendChild(span);
 			content.appendChild(numberOfVideos);
@@ -282,11 +281,11 @@ function getPlaylists(id) {
 /**
  * Sélectionne la playlist sur laquelle on a cliqué
  */
-function selectPlaylist(clicked_li, playlist_id) { //clicked_li correspond au li sur lequel l'utilisateur a cliqué
+function selectPlaylist(clicked_li, playlist_id) { // "clicked_li" correspond au li sur lequel l'utilisateur a cliqué
 	
 	//Changement de style pour le li selectionné
 	allLi = playlistsList.querySelectorAll("li");
-	Array.from(allLi).forEach(function(li){		//allLi est un nodeList et non un array. forEach ne marchAIT pas pour les nodelist sur les anciens navigateurs donc il faut les transformer en array.
+	Array.from(allLi).forEach(function(li){		// "allLi" est un nodeList et non un array. forEach ne marchait pas pour les nodelist sur les anciens navigateurs donc il faut les transformer en array.
 		li.classList.remove('selected');
 	})
 	if (clicked_li) {
@@ -455,20 +454,16 @@ createPlaylistForm.addEventListener("submit", function(e) {
 	var select = document.getElementById('new_playlist_privacy_status');
 	privacy_status = select.options[select.selectedIndex].value;
 	createPlaylist(title.value, privacy_status);
-	title.value = '';
+	title.value = ''; //On vide le champ Titre après la création de la playlist
 });
 
 /**
  * Créer une playlist
  */
-function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut
+function createPlaylist(title = "Sans Titre", privacyStatus = "private") { //Valeurs par défaut si title et privacyStatus ne sont pas passées en paramètres
+	title = title ? title : "Sans titre"; //Valeur par défaut si title n'est pas défini ou est égal à une chaine de caractère vide
+	privacyStatus = privacyStatus ? privacyStatus : "private"; //Valeur par défaut si privacyStatus n'est pas défini ou est égal à une chaine de caractère vide
 
-	if (!title) {
-		title = "Sans titre";
-	}
-	if (!privacyStatus) {
-		privacyStatus = "private";
-	}
 	var request = gapi.client.youtube.playlists.insert({
 		part: 'snippet,status,contentDetails',
 		resource: {
@@ -607,16 +602,12 @@ function removeItem(playlist_id, playlist_item_id, li) {
 			});
 		});
 		
-		//on décrémente le nombre de vidéo de la playlist concernée
+		//Décrémentation du nombre de vidéos de la playlist sélectionnée
 		var numberOfVideos = playlistsList.querySelector("li.selected .numberOfVideos .number"); //On récupère le nombre de vidéos de la playlist sélectionnée
-		var exNumber = parseInt(numberOfVideos.innerHTML); //On décrémente ce nombre
-		var newNumber = exNumber-1;
-		//On fait attention à l'orthographe
-		if (newNumber>1) {
-			playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> vidéos";
-		} else {
-			playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> vidéo";
-		}
+		var exNumber = parseInt(numberOfVideos.innerHTML); 
+		var newNumber = exNumber-1;//On décrémente ce nombre
+		//On actualise l'affichage du nombre de vidéos dans la liste des playlists
+		playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> " + (newNumber>1 ? "vidéos" : "vidéo"); //On fait attention à l'orthographe #projetVoltaire
 	});
 }
 
@@ -672,16 +663,14 @@ function addItem(playlist_id, video_id, add_item_button) {
 		li.appendChild(a);
 		li.appendChild(remove_item_button);
 		list.appendChild(li);
-		
-		var numberOfVideos = playlistsList.querySelector("li.selected .numberOfVideos .number"); //On récupère le nombre de vidéos de la playlist sélectionnée
-		var exNumber = parseInt(numberOfVideos.innerHTML); //On incrémente ce nombre
-		var newNumber = exNumber+1;
-		//On fait attention à l'orthographe
-		if (newNumber>1) {
-			playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> vidéos";
-		} else {
-			playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> vidéo";
-		}
+
+		//On récupère le nombre de vidéos de la playlist sélectionnée
+		var numberOfVideos = playlistsList.querySelector("li.selected .numberOfVideos .number"); 
+		var exNumber = parseInt(numberOfVideos.innerHTML); 
+		var newNumber = exNumber+1; //On incrémente ce nombre
+		//On actualise l'affichage du nombre de vidéos dans la liste des playlists
+		playlistsList.querySelector("li.selected .numberOfVideos").innerHTML = "<span class='number'>" + newNumber + "</span> " + (newNumber>1 ? "vidéos" : "vidéo"); //On fait attention à l'orthographe #projetVoltaire
+
 		//Si c'est la première vidéo de la playlist, on actualise l'image dans la liste des playlists
 		var nb_videos_in_playlist = list.querySelectorAll('li').length;
 		if (nb_videos_in_playlist == 1) {
