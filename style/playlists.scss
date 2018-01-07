@@ -1,8 +1,4 @@
-// FEUILLE DE STYLE PRINCIPALE POUR LA GESTION DES PLAYLISTS
-
 @import 'colors';
-
-// DIV LOADER DE LA PAGE
 
 #loader{
 	position:absolute;
@@ -19,9 +15,6 @@
 #loader.disappear{
 	opacity:0;
 }
-
-// ASIDE GAUCHE DU SITE CONTENANT LE PROFIL DIVISE EN 4 BLOCS PRINCIPAUX : LA PARTIE "COMPTE", LA PARTIE RECHERCHE d'UTILISATEUR, LA PARTIE AJOUTER PLAYLIST ET LA PARTIE PLAYLIST
-
 #left_aside{
 	background-color: rgba(246, 246, 246, 1);
 	width: 30%;
@@ -30,8 +23,40 @@
 	box-sizing: border-box;
 	overflow: scroll;
 	overflow-x: hidden;
+	#searchByUsername{
+			display: inline-flex;
+			justify-content: center;
+			padding-bottom:20px;
+			width:100%;
+		#username{
+			padding: 10px 15px;
+			width:70%;
+			border: 2px solid rgba(0, 0, 0, 0.07);
+			position: relative;
+			box-sizing: border-box;
+			transition: .3s;
+			z-index: 2;
+			height: 47px;
+			&:focus{
+				width:85%;
+			}
+		}
+		button{
+			opacity: 1;
+			position: relative;
+			z-index: 1;
+			border: 2px solid #00000021;
+			padding: 0;
+			width: 50px;
+			height: 47px;
+			transition: .3s;
+		}
+	}
 
 	.accounts{
+		/* display: inline-flex;
+		flex-direction: column;
+		justify-content: flex-start; */
 		.account{
 			padding: 20px 10px 10px 10px;
 			text-align: center;
@@ -63,86 +88,7 @@
 		}
 	}
 	
-	#searchByUsername{
-			display: inline-flex;
-			justify-content: center;
-			padding-bottom:20px;
-			width:100%;
-		#username{
-			padding: 10px 15px;
-			width:70%;
-			border: 2px solid rgba(0, 0, 0, 0.07);
-			position: relative;
-			box-sizing: border-box;
-			transition: .3s;
-			z-index: 2;
-			height: 47px;
-			&:focus{
-				width:85%;
-			}
-		}
-		button{
-			opacity: 1;
-			position: relative;
-			z-index: 1;
-			border: 2px solid #00000021;
-			padding: 0;
-			width: 50px;
-			height: 47px;
-			transition: .3s;
-		}
-	}
 	
-	div#addPlaylist{
-		position: relative;
-		padding-bottom: 20px;
-		width: 100%;
-		box-sizing: border-box;
-		background-color: rgba(246, 246, 246, 1);
-		h2{
-			display: inline-flex;
-			margin-bottom: 20px;
-		}
-		input{
-			border: 2px solid rgba(0, 0, 0, 0.07);
-			height:50px;
-			display: inline-block;
-			width:100%;
-			padding: 10px;
-			background-color: white;
-			margin-bottom: 10px;
-		}
-		select{
-			border: 2px solid rgba(0, 0, 0, 0.07);
-			height:50px;
-			display: inline-block;
-			width:75%;
-			padding: 10px;
-			background-color: white;
-		}
-		button {
-			float:right;
-			opacity: 1;
-			position: relative;
-			border: 2px solid #00000021;
-			background-color: $main-color;
-			color: white;
-			cursor: pointer;
-			transition: .3s;
-			position: relative;
-			height:50px;
-			width: 50px;
-
-			i{
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				font-size: 1.3em;
-			}
-		}
-	}
-
 	#playlists{
 		position: relative;
 		.refresh{
@@ -208,9 +154,56 @@
 			}
 		}
 	}
-}
+	div#addPlaylist{
+		position: relative;
+		padding-bottom: 20px;
+		width: 100%;
+		box-sizing: border-box;
+		background-color: rgba(246, 246, 246, 1);
+		h2{
+			display: inline-flex;
+			margin-bottom: 20px;
+		}
+		input{
+			border: 2px solid rgba(0, 0, 0, 0.07);
+			height:50px;
+			display: inline-block;
+			width:100%;
+			padding: 10px;
+			background-color: white;
+			margin-bottom: 10px;
+		}
+		select{
+			border: 2px solid rgba(0, 0, 0, 0.07);
+			height:50px;
+			display: inline-block;
+			width:75%;
+			padding: 10px;
+			background-color: white;
+		}
+		button {
+			float:right;
+			opacity: 1;
+			position: relative;
+			border: 2px solid #00000021;
+			background-color: $main-color;
+			color: white;
+			cursor: pointer;
+			transition: .3s;
+			position: relative;
+			height:50px;
+			width: 50px;
 
-// SECTION CENTRALE "PRINCIPALE" DE L'APPLICATION AVEC UN BLOC D'INFOS SUR LA PLAYLIST PUIS UNE DIV D'EDIT ET ENFIN UNE LISTE DES VIDEOS
+			i{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				font-size: 1.3em;
+			}
+		}
+	}
+}
 
 section#main_content{
 	margin-left: 30%;
@@ -371,8 +364,6 @@ section#main_content.fullscreen{
 	width:70%;
 }
 
-// SECTION DROITE DE "RECHERCHE DE VIDEO" AVEC UN FORMULAIRE ET UNE LISTE DES ELEMENTS RECUPERES
-
 #video_search{
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -481,8 +472,6 @@ section#main_content.fullscreen{
 	}
 }
 
-// MEDIA QUERIES AVEC CI-DESSOUS LES MODIFICATIONS POUR LA VERSION "TABLETTE" POUR LE RESPONSIVE
-
 @media screen and (max-width: 1110px) {
   #left_aside{
   	width: 40%;
@@ -537,8 +526,6 @@ section#main_content.fullscreen{
 		}
 	}
 }
-
-// MEDIA QUERIES AVEC CI-DESSOUS LES MODIFICATIONS A FAIRE POUR LA VERSION "MOBILE" POUR LE RESPONSIVE
 
 @media screen and (max-width: 850px) {
 	/*A COMPLETER POUR VERSION MOBILE*/
