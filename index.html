@@ -8,12 +8,18 @@
         <link rel="icon" type="image/png" href="img/playlist_icon.png">
     </head>
     <body>
+
+        <!-- MODALE DE CONNEXION LORSQUE L'ON ARRIVE SUR L'APPLICATION SANS ÊTRE CONNECTE -->
         <div id="authorize_modal">
             <img id="logo_site" src="img/playlist_title.png" alt="Logo du site" >
             <button id="authorize-button">Entrer sur l'application</button>
         </div>
+
+
+        <!-- LOADER PERMETTANT A LA PAGE DE CHARGER TOTALEMENT EN INDIQUANT A L'UTILISATEUR QUE LA PAGE CHARGE -->
         <div id="loader"><p>loading...</p></div>
 
+        <!-- PARTIE GAUCHE DU SITE CONTENANT LE PROFIL DIVISE EN 4 BLOCS PRINCIPAUX : LA PARTIE "COMPTE", LA PARTIE RECHERCHE d'UTILISATEUR, LA PARTIE AJOUTER PLAYLIST ET LA PARTIE PLAYLIST -->
         <aside id="left_aside">
             
             <div class="accounts">
@@ -60,6 +66,7 @@
         </aside>
 
         
+        <!-- SECTION PRINCIPALE DE L'APPLICATION AVEC UN BLOC D'INFOS SUR LA PLAYLIST PUIS UNE DIV POUR L'EDITER ET ENFIN LA LISTE DES VIDEOS -->
         <section id="main_content">
             <button  title="Ajouter une vidéo" id="add_video"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>
@@ -96,8 +103,10 @@
             </ul>
         </section>
 
+        <!-- FOND DE LA MODALE DE RECHERCHE DE VIDEO LORS DU MODE TABLETTE QUI SERT DE FILTRE ET DE ZONE CLIQUABLE POUR EN SORTIR  -->
         <div id="background_modal"></div>
 
+        <!-- SECTION RECHERCHE DE VIDEO QUI PERMET DE RECHERCHER UNE VIDEO POUR L'AJOUTER DANS LA PLAYLIST SELECTIONNEE. ELLE APPARAIT SUR LA DROITE DU SITE EN VERSION PC ET EN MODALE POUR LA VERSION TABLETTE -->
         <section id="video_search">
             <button title="Fermer la fenêtre" id="close_modal"><i class="fa fa-plus" aria-hidden="true"></i></button>
             <h2>Ajouter une vidéo</h2>
@@ -113,6 +122,7 @@
             </ul>
         </section>
 
+        <!-- EXECUTION DES DIFFERENTS SCRIPTS -->
         <script type="text/javascript" src="script/script.js"></script>
         <script type="text/javascript" src="script/responsive.js"></script>
         <script async defer src="https://apis.google.com/js/api.js"

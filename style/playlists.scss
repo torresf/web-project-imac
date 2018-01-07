@@ -1,4 +1,8 @@
+// FEUILLE DE STYLE PRINCIPALE POUR LA GESTION DES PLAYLISTS
+
 @import 'colors';
+
+// DIV LOADER DE LA PAGE
 
 #loader{
 	position:absolute;
@@ -15,6 +19,9 @@
 #loader.disappear{
 	opacity:0;
 }
+
+// ASIDE GAUCHE DU SITE CONTENANT LE PROFIL DIVISE EN 4 BLOCS PRINCIPAUX : LA PARTIE "COMPTE", LA PARTIE RECHERCHE d'UTILISATEUR, LA PARTIE AJOUTER PLAYLIST ET LA PARTIE PLAYLIST
+
 #left_aside{
 	background-color: rgba(246, 246, 246, 1);
 	width: 30%;
@@ -205,6 +212,8 @@
 	}
 }
 
+// SECTION CENTRALE "PRINCIPALE" DE L'APPLICATION AVEC UN BLOC D'INFOS SUR LA PLAYLIST PUIS UNE DIV D'EDIT ET ENFIN UNE LISTE DES VIDEOS
+
 section#main_content{
 	margin-left: 30%;
 	float: left;
@@ -361,6 +370,8 @@ section#main_content.fullscreen{
 	width:70%;
 }
 
+// SECTION DROITE DE "RECHERCHE DE VIDEO" AVEC UN FORMULAIRE ET UNE LISTE DES ELEMENTS RECUPERES
+
 #video_search{
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -469,6 +480,8 @@ section#main_content.fullscreen{
 	}
 }
 
+// MEDIA QUERIES AVEC CI-DESSOUS LES MODIFICATIONS POUR LA VERSION "TABLETTE" POUR LE RESPONSIVE
+
 @media screen and (max-width: 1110px) {
   #left_aside{
   	width: 40%;
@@ -523,6 +536,8 @@ section#main_content.fullscreen{
 		}
 	}
 }
+
+// MEDIA QUERIES AVEC CI-DESSOUS LES MODIFICATIONS A FAIRE POUR LA VERSION "MOBILE" POUR LE RESPONSIVE
 
 @media screen and (max-width: 850px) {
 	/*A COMPLETER POUR VERSION MOBILE*/
